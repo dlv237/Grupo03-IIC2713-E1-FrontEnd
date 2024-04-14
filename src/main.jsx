@@ -4,6 +4,7 @@ import App from "./App.jsx";
 import "./index.css";
 
 const Prueba = 123;
+const doble = 123;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
