@@ -6,8 +6,14 @@ const Flights = () => {
     useEffect(() => {
         const fetchFlights = async () => {
             try {
-                const response = await fetch('https://www.we-flight.tech/flights');
-                const data = await response.json();
+                const response = await fetch('http://localhost:3000/flights');
+        
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+        
+                const data = await response.text();
+                console.log(data); 
                 setFlights(data);
             } catch (error) {
                 console.error('Error fetching flights:', error);
@@ -20,7 +26,7 @@ const Flights = () => {
     return (
         <div>
             Hola Holaaa
-            {JSON.stringify(flights)}
+            <div dangerouslySetInnerHTML={{ __html: flights }} />
         </div>
     );
 };

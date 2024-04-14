@@ -19,7 +19,7 @@ const Flight = () => {
 
     return (
         <div>
-            {/* Renderiza los vuelos aquí */}
+            {}
         </div>
     );
 };
