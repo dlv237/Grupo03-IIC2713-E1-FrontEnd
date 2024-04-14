@@ -1,0 +1,33 @@
+.right-container {
+    float: right;
+}
+
+.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #f9fcff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    border-bottom: 2px solid #000035;
+}
+
+.navbar-li {
+    float: left;
+    border-right: 1px solid #bbb;
+}
+
+.navbar-a {
+    display: block;
+    color: #000035;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: "League Spartan", sans-serif;
+}
+
+.navbar-a:hover {
+    background-color: #84b6f4;
+}
