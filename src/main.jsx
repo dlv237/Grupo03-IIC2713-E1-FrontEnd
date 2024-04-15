@@ -1,9 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Navbar from "./common/navbar.jsx";
+import { BrowserRouter } from "react-router-dom";
+import Navbar from "./common/navbar";
+import PageRoutes from "./common/router";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Navbar/>
+    <BrowserRouter>
+      <Navbar/>
+      <PageRoutes/>
+    </BrowserRouter>
   </React.StrictMode>,
 );
