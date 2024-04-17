@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import './Button.css'; // Asegúrate de que la ruta al archivo CSS es correcta
+import './Button.css'; 
 
 const Button = ({ children, alternative, simple }) => {
   const buttonRef = useRef(null);

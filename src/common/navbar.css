@@ -1,3 +1,8 @@
+body, .navbar-container {
+    margin: 0;
+    padding: 0;
+}
+
 .right-container {
     float: right;
 }
@@ -12,6 +17,7 @@
     top: 0;
     width: 100%;
     border-bottom: 2px solid #000035;
+    z-index: 1000;
 }
 
 .navbar-li {

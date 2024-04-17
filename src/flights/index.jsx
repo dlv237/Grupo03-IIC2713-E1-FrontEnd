@@ -5,6 +5,11 @@ import Button from '../common/Button.jsx';
 
 const Flights = () => {
   const [flights, setFlights] = useState([]);
+  const [arrivalFilter, setArrivalFilter] = useState('');
+  const [departureFilter, setDepartureFilter] = useState('');
+  const [dateFilter, setDateFilter] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(25);
 
   useEffect(() => {
     const fetchFlights = async () => {
@@ -26,9 +31,28 @@ const Flights = () => {
     fetchFlights();
   }, []);
 
+  // Filtrar los vuelos
+  const filteredFlights = flights.filter(flight => {
+    const departureMatch = departureFilter ? flight.flights[0].departure_airport.id.includes(departureFilter) : true;
+    const arrivalMatch = arrivalFilter ? flight.flights[0].arrival_airport.id.includes(arrivalFilter) : true;
+    const dateMatch = dateFilter ? flight.flights[0].departure_airport.time.includes(dateFilter) : true;
+
+    return departureMatch && arrivalMatch && dateMatch;
+  });
+
+  // Paginar los vuelos
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const selectedFlights = filteredFlights.slice(startIndex, startIndex + itemsPerPage);
+  const totalPages = Math.ceil(filteredFlights.length / itemsPerPage);
   return (
     <div className="container">
-      {flights.map((flight, index) => {
+      <div className="filters">
+        <input type="text" value={departureFilter} onChange={e => setDepartureFilter(e.target.value)} placeholder="Departure" />
+        <input type="text" value={arrivalFilter} onChange={e => setArrivalFilter(e.target.value)} placeholder="Arrival" />
+        <input type="date" value={dateFilter} onChange={e => setDateFilter(e.target.value)} />
+        <input type="number" value={itemsPerPage} onChange={e => setItemsPerPage(Math.max(25, e.target.value))} min="25" placeholder="Items per page" />
+      </div>      
+      {selectedFlights.map((flight, index) => {
         const departureDate = new Date(flight.flights[0].departure_airport.time);
         const arrivalDate = new Date(flight.flights[0].arrival_airport.time);
       
@@ -43,7 +67,7 @@ const Flights = () => {
         if (arrivalDate.setHours(0, 0, 0, 0) > departureDate.setHours(0, 0, 0, 0)) {
           arrivalTime += " +1 día";
         }
-      
+        const totalPages = Math.ceil(filteredFlights.length / itemsPerPage);
         return (
           <div key={index} className="flight-card"> 
             <div className="section-1">
@@ -61,12 +85,26 @@ const Flights = () => {
             <div className="section-2">
               <h4>Precio: {flight.price.toLocaleString('es-ES', { style: 'currency', currency: 'CLP' })} </h4>
               <Button simple> Reservar  vuelo  </Button>
-              <br />
+              <br/>
               <Button simple>Detalle del vuelo</Button>
             </div>
+            
           </div>
         );
       })}
+      <div className="pagination">
+        <button onClick={() => setCurrentPage(oldPage => Math.max(oldPage - 1, 1))}>Anterior</button>
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+          <button
+            key={page}
+            onClick={() => setCurrentPage(page)}
+            className={page === currentPage ? 'active' : ''}
+          >
+            {page}
+          </button>
+        ))}
+        <button onClick={() => setCurrentPage(oldPage => Math.min(oldPage + 1, totalPages))}>Siguiente</button>
+      </div>
     </div>
   );
 };

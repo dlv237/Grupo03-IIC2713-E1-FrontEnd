@@ -53,3 +53,36 @@ body {
     width: 50px; 
     height: auto;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    margin-bottom: 80px; 
+  }
+  
+  .pagination button {
+    background-color: #2B3044;
+    color: white; 
+    border: none;
+    cursor: pointer;
+    padding: 15px 32px;
+    text-align: center;
+    border-radius: 12px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    font-family: "League Spartan", sans-serif;
+  }
+  
+  .pagination button:hover {
+    background-color: white; 
+    color: black;
+  }
+  
+  .pagination .active {
+    background-color: #3acbf7;
+    color: white;
+  }
