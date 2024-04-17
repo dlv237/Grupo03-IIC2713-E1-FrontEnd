@@ -56,9 +56,11 @@ body {
 
 .pagination {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     margin: 20px 0;
     margin-bottom: 80px; 
+    overflow-x: auto;
+    padding: 0 -100px;
   }
   
   .pagination button {
@@ -84,5 +86,16 @@ body {
   
   .pagination .active {
     background-color: #3acbf7;
-    color: white;
+    color: #2B3044;
+  }
+
+  .filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-family: "League Spartan", sans-serif;
   }

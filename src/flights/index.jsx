@@ -7,9 +7,9 @@ const Flights = () => {
   const [flights, setFlights] = useState([]);
   const [arrivalFilter, setArrivalFilter] = useState("");
   const [departureFilter, setDepartureFilter] = useState("");
-  const [dateFilter, setDateFilter] = useState(null);
+  const [dateFilter, setDateFilter] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(25);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
 
   useEffect(() => {
     const fetchFlights = async () => {
@@ -31,7 +31,6 @@ const Flights = () => {
     fetchFlights();
   }, []);
 
-  // Filtrar los vuelos
   const filteredFlights = flights.filter((flight) => {
     const departureMatch = departureFilter
       ? flight.flights[0].departure_airport.id.includes(departureFilter)
@@ -46,7 +45,6 @@ const Flights = () => {
     return departureMatch && arrivalMatch && dateMatch;
   });
 
-  // Paginar los vuelos
   const startIndex = (currentPage - 1) * itemsPerPage;
   const selectedFlights = filteredFlights.slice(
     startIndex,
@@ -56,28 +54,32 @@ const Flights = () => {
   return (
     <div className="container">
       <div className="filters">
+        <label>Departure:</label>
         <input
           type="text"
           value={departureFilter}
           onChange={(e) => setDepartureFilter(e.target.value)}
           placeholder="Departure"
         />
+        <label>Arrival:</label>
         <input
           type="text"
           value={arrivalFilter}
           onChange={(e) => setArrivalFilter(e.target.value)}
           placeholder="Arrival"
         />
+        <label>Departure Date:</label>
         <input
           type="date"
           value={dateFilter}
           onChange={(e) => setDateFilter(e.target.value)}
         />
+        <label>Items per page:</label>
         <input
           type="number"
           value={itemsPerPage}
-          onChange={(e) => setItemsPerPage(Math.max(25, e.target.value))}
-          min="25"
+          onChange={(e) => setItemsPerPage(Math.max(5, e.target.value))}
+          min="5"
           placeholder="Items per page"
         />
       </div>
