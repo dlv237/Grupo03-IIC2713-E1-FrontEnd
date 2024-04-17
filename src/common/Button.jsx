@@ -1,5 +1,12 @@
 import "./Button.css";
+import PropTypes from "prop-types";
+import { useRef, useEffect } from "react";
 
+Button.propTypes = {
+  children: PropTypes.node.isRequired,
+  alternative: PropTypes.bool,
+  simple: PropTypes.bool,
+};
 const Button = ({ children, alternative, simple }) => {
   const buttonRef = useRef(null);
 
