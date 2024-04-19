@@ -2,7 +2,7 @@ body {
     background-color: #dcdcdc;
 }
 
-.container {
+.flight-container {
     max-width: 1000px;
     margin: 0 auto;
     margin-top: 80px;
@@ -54,11 +54,15 @@ body {
     height: auto;
 }
 
+
 .pagination {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     margin: 20px 0;
     margin-bottom: 80px; 
+    overflow-x: auto;
+    padding: 0 -100px;
+    white-space: nowrap;
   }
   
   .pagination button {
@@ -84,5 +88,57 @@ body {
   
   .pagination .active {
     background-color: #3acbf7;
-    color: white;
+    color: #2B3044;
   }
+
+.filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    font-family: "League Spartan", sans-serif;
+}
+
+.flight-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    font-family: "League Spartan", sans-serif;
+}
+
+.flight-info .section-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.flight-info .section-1 .flight-table {
+    border-collapse: collapse;
+}
+
+.flight-info .section-1 .flight-table,
+.flight-info .section-1 .flight-table th,
+.flight-info .section-1 .flight-table td {
+    border: none;
+    text-align: left;
+}
+
+.flight-info .section-1 .flight-table tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+.flight-info .section-1 .flight-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+.flight-info .section-2 img {
+    width: 50px; 
+    height: auto;
+}

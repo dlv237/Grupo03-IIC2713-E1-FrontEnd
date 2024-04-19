@@ -1,12 +1,7 @@
-import "./Button.css";
-import PropTypes from "prop-types";
+import "./button.css";
 import { useRef, useEffect } from "react";
+import PropTypes from "prop-types";
 
-Button.propTypes = {
-  children: PropTypes.node.isRequired,
-  alternative: PropTypes.bool,
-  simple: PropTypes.bool,
-};
 const Button = ({ children, alternative, simple }) => {
   const buttonRef = useRef(null);
 
@@ -62,6 +57,12 @@ const Button = ({ children, alternative, simple }) => {
       {children}
     </button>
   );
+};
+
+Button.propTypes = {
+  children: PropTypes.node.isRequired,
+  alternative: PropTypes.bool,
+  simple: PropTypes.bool,
 };
 
 export default Button;

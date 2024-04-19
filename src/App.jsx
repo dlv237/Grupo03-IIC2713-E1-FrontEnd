@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // Cambia Switch por Routes
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Flights from "./flights/index";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
