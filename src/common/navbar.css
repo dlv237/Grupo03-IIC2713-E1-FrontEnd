@@ -1,3 +1,8 @@
+body, .navbar-container {
+    margin: 0;
+    padding: 0;
+}
+
 .right-container {
     float: right;
 }
@@ -27,6 +32,7 @@
     padding: 14px 16px;
     text-decoration: none;
     font-family: "League Spartan", sans-serif;
+    font-weight: bold;
 }
 
 .navbar-a:hover {
