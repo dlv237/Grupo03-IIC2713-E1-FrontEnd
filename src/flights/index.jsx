@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import "./index.css";
-import Button from "../common/Button.jsx";
+import Button from "../common/button.jsx";
 
 const Flights = () => {
   const [flights, setFlights] = useState([]);
@@ -137,9 +137,9 @@ const Flights = () => {
                   currency: "CLP",
                 })}{" "}
               </h4>
-              <Button simple> Reservar vuelo </Button>
-              <br />
-              <Button simple>Detalle del vuelo</Button>
+              <a href={`http://localhost:5173/flights/${flight._id}`}>
+                <Button simple>Detalle del vuelo</Button>
+              </a>
             </div>
           </div>
         );

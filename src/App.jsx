@@ -4,6 +4,7 @@ import Flights from "./flights/index";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import Navbar from "./common/navbar.jsx";
+import Flight from "./flights/show.jsx";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -13,6 +14,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/flights" element={<Flights />} />
+        <Route path="/flights/:id" element={<Flight />} />
         <Route
           path="/"
           element={
