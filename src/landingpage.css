@@ -1,0 +1,39 @@
+.landing-container {
+    padding-top: 49.2px;
+}
+
+.landing-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.landing-left-container, .landing-right-container {
+    width: 50%;
+}
+
+.landing-left-container {
+    width: 50%;
+    height: 100vh;
+    background-image: url("./assets/Fondo_aeropuerto.jpg");
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+}
+
+
+.landing-title {
+    font-family: "League Spartan", sans-serif;
+    font-size: 5em;
+    text-align: center;
+    color: #000035;
+}
+
+.landing-text {
+    font-family: "League Spartan", sans-serif;
+    font-size: 2.53em;
+    text-align: center;
+    color: #000035;
+}
