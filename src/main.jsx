@@ -7,8 +7,8 @@ import PageRoutes from "./common/router";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <Navbar/>
-      <PageRoutes/>
+      <Navbar />
+      <PageRoutes />
     </BrowserRouter>
   </React.StrictMode>,
 );
