@@ -1,7 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import "./index.css";
-import Button from "../common/Button.jsx";
+import Button from "../common/button.jsx";
+import { Link } from 'react-router-dom';
+
+
 
 const Flights = () => {
   const [flights, setFlights] = useState([]);
@@ -9,7 +12,7 @@ const Flights = () => {
   const [departureFilter, setDepartureFilter] = useState("");
   const [dateFilter, setDateFilter] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(25);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
 
   useEffect(() => {
     const fetchFlights = async () => {
@@ -31,7 +34,6 @@ const Flights = () => {
     fetchFlights();
   }, []);
 
-  // Filtrar los vuelos
   const filteredFlights = flights.filter((flight) => {
     const departureMatch = departureFilter
       ? flight.flights[0].departure_airport.id.includes(departureFilter)
@@ -46,7 +48,6 @@ const Flights = () => {
     return departureMatch && arrivalMatch && dateMatch;
   });
 
-  // Paginar los vuelos
   const startIndex = (currentPage - 1) * itemsPerPage;
   const selectedFlights = filteredFlights.slice(
     startIndex,
@@ -54,30 +55,34 @@ const Flights = () => {
   );
   const totalPages = Math.ceil(filteredFlights.length / itemsPerPage);
   return (
-    <div className="container">
+    <div className="flight-container">
       <div className="filters">
+        <h4>Salida</h4>
         <input
           type="text"
           value={departureFilter}
           onChange={(e) => setDepartureFilter(e.target.value)}
           placeholder="Departure"
         />
+        <h4>Llegada</h4>
         <input
           type="text"
           value={arrivalFilter}
           onChange={(e) => setArrivalFilter(e.target.value)}
           placeholder="Arrival"
         />
+        <h4>Fecha</h4>
         <input
           type="date"
           value={dateFilter}
           onChange={(e) => setDateFilter(e.target.value)}
         />
+        <h4>Items por página</h4>
         <input
           type="number"
           value={itemsPerPage}
-          onChange={(e) => setItemsPerPage(Math.max(25, e.target.value))}
-          min="25"
+          onChange={(e) => setItemsPerPage(Math.max(5, e.target.value))}
+          min="5"
           placeholder="Items per page"
         />
       </div>
@@ -135,9 +140,11 @@ const Flights = () => {
                   currency: "CLP",
                 })}{" "}
               </h4>
-              <Button simple> Reservar vuelo </Button>
+
+              <Link to={`/flights/${flight._id}`}>
+                <Button simple>Reservar vuelo</Button>
+              </Link>
               <br />
-              <Button simple>Detalle del vuelo</Button>
             </div>
           </div>
         );
