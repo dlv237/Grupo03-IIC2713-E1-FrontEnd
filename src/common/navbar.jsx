@@ -1,5 +1,6 @@
 import "./navbar.css";
 import { Link } from "react-router-dom";
+import LoginButton from "./LoginButton";
 
 function Navbar() {
   return (
@@ -10,16 +11,7 @@ function Navbar() {
         </Link>
       </li>
       <div className="right-container">
-        <li className="navbar-li">
-          <Link to="/login" className="navbar-a">
-            Iniciar Sesion
-          </Link>
-        </li>
-        <li className="navbar-li">
-          <Link to="/register" className="navbar-a">
-            Registrarte
-          </Link>
-        </li>
+        <LoginButton></LoginButton>
       </div>
     </ul>
   );
