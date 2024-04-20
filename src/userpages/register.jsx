@@ -1,8 +1,40 @@
 import "./register.css";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function Register() {
   const navigate = useNavigate();
+
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    password: "",
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+      if (response.ok) {
+        navigate("/"); // Redireccionar a la página de inicio después del registro
+      } else {
+        // Manejar errores de registro
+      }
+    } catch (error) {
+      console.error("Error al registrar:", error);
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   return (
     <div className="landing-container">
@@ -13,12 +45,15 @@ function Register() {
             <div className="screen">
               <div className="screen__content">
                 <h2 className="register-title">Registrarse</h2>
-                <form className="register">
+                <form className="register" onSubmit={handleSubmit}>
                   <div className="register__field">
                     <input
                       type="text"
                       className="login__input"
                       placeholder="Nombre"
+                      name="name"
+                      value={user.name}
+                      onChange={handleChange}
                     ></input>
                   </div>
                   <div className="register__field">
@@ -26,6 +61,9 @@ function Register() {
                       type="mail"
                       className="login__input"
                       placeholder="Mail"
+                      name="email"
+                      value={user.email}
+                      onChange={handleChange}
                     ></input>
                   </div>
                   <div className="register__field">
@@ -33,6 +71,9 @@ function Register() {
                       type="text"
                       className="login__input"
                       placeholder="Telefono"
+                      name="phone"
+                      value={user.phone}
+                      onChange={handleChange}
                     ></input>
                   </div>
                   <div className="register__field">
@@ -40,6 +81,9 @@ function Register() {
                       type="password"
                       className="login__input"
                       placeholder="Contraseña"
+                      name="password"
+                      value={user.password}
+                      onChange={handleChange}
                     ></input>
                   </div>
                   <div className="login-buttons-container">

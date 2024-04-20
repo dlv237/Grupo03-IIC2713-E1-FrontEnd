@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import "./index.css";
-import Button from "../common/button.jsx";
+import Button from "../common/Button";
 import { Link } from 'react-router-dom';
 
 
