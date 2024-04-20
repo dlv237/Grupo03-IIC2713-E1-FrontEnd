@@ -1,8 +1,13 @@
 import "./navbar.css";
 import { Link } from "react-router-dom";
 import LoginButton from "./LoginButton";
+import LogoutButton from "./LogoutButton";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Navbar() {
+
+  const { isAuthenticated } = useAuth0();
+
   return (
     <ul className="navbar">
       <li className="navbar-li">
@@ -11,7 +16,8 @@ function Navbar() {
         </Link>
       </li>
       <div className="right-container">
-        <LoginButton></LoginButton>
+        {isAuthenticated ? (<LogoutButton></LogoutButton>) : (<LoginButton></LoginButton>)}
+        
       </div>
     </ul>
   );

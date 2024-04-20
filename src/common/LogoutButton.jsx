@@ -1,4 +1,4 @@
-import "./Button.css";
+import "../common/Button.css";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const LogoutButton = () => {
@@ -8,10 +8,10 @@ const LogoutButton = () => {
     return (
       <>
         <button
-          className="btn btn-primary logoutBtn"
+          className="button"
           onClick={() => logout({ returnTo: window.location.origin })}
         >
-          Log Out
+          Cerrar Sesión
         </button>
         <br />
       </>
