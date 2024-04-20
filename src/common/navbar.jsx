@@ -5,7 +5,6 @@ import LogoutButton from "./LogoutButton";
 import { useAuth0 } from "@auth0/auth0-react";
 
 function Navbar() {
-
   const { isAuthenticated } = useAuth0();
 
   return (
@@ -16,8 +15,11 @@ function Navbar() {
         </Link>
       </li>
       <div className="right-container">
-        {isAuthenticated ? (<LogoutButton></LogoutButton>) : (<LoginButton></LoginButton>)}
-        
+        {isAuthenticated ? (
+          <LogoutButton></LogoutButton>
+        ) : (
+          <LoginButton></LoginButton>
+        )}
       </div>
     </ul>
   );
