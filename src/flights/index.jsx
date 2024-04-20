@@ -1,10 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import "./index.css";
-import Button from "../common/button.jsx";
-import { Link } from 'react-router-dom';
-
-
+import Button from "../common/Button.jsx";
+import { Link } from "react-router-dom";
 
 const Flights = () => {
   const [flights, setFlights] = useState([]);
