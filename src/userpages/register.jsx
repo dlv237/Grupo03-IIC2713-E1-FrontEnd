@@ -15,8 +15,9 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(user);
     try {
-      const response = await axios.post("https://localhost:3000/users", user);
+      const response = await axios.post("https://flightsbooking.me/users", user);
       if (response.status === 200) {
         navigate("/");
       } else {
