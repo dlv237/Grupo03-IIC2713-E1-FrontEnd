@@ -8,8 +8,11 @@
     color: #000035 !important;
     text-decoration: none !important;
     cursor: pointer !important;
-    font-size: 17px;
-    margin-top: 4px;
+    font-size: 16px;
+    margin-top: 3.8px;
+    align-items: center;
+    align-self: center;
+    align-content: center;
 }
 
 .login-button:hover {
