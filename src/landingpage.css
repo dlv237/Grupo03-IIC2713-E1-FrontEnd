@@ -8,15 +8,15 @@
     align-items: center;
 }
 
-.landing-left-container, .landing-right-container {
+.landing-left-container,
+.landing-right-container {
     width: 50%;
 }
 
 .landing-left-container {
     width: 50%;
     height: 100vh;
-    background-image: url("./assets/Fondo_aeropuerto.jpg");
-    background-size: cover; 
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;

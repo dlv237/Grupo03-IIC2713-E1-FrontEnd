@@ -4,6 +4,7 @@ import Login from "../userpages/login";
 import Register from "../userpages/register";
 import Flight from "../flights/show";
 import Flights from "../flights/index";
+import Search from "../flights/search";
 
 const PageRoutes = () => {
   return (
@@ -13,6 +14,7 @@ const PageRoutes = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/flights" element={<Flights />} />
       <Route path="/flights/:id" element={<Flight />} />
+      <Route path="/search" element={<Search />} />
     </Routes>
   );
 };

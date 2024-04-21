@@ -5,21 +5,21 @@
 	min-height: 100vh;
 }
 
-.screen {		
-	background: linear-gradient(90deg, #005287, #4d82bc);		
-	position: relative;	
+.screen {
+	background: linear-gradient(90deg, #005287, #4d82bc);
+	position: relative;
 	height: 600px;
-	width: 360px;	
+	width: 360px;
 	box-shadow: 0px 0px 24px #000035;
 }
 
 .screen__content {
 	z-index: 1;
-	position: relative;	
+	position: relative;
 	height: 100%;
 }
 
-.screen__background {		
+.screen__background {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -27,7 +27,7 @@
 	bottom: 0;
 	z-index: 0;
 	-webkit-clip-path: inset(0 0 0 0);
-	clip-path: inset(0 0 0 0);	
+	clip-path: inset(0 0 0 0);
 }
 
 .screen__background__shape {
@@ -38,18 +38,18 @@
 .screen__background__shape1 {
 	height: 520px;
 	width: 520px;
-	background: #FFF;	
+	background: #FFF;
 	top: -50px;
-	right: 120px;	
+	right: 120px;
 	border-radius: 0 72px 0 0;
 }
 
 .screen__background__shape2 {
 	height: 220px;
 	width: 220px;
-	background: #84b6f4;	
+	background: #84b6f4;
 	top: -172px;
-	right: 0;	
+	right: 0;
 	border-radius: 32px;
 }
 
@@ -58,16 +58,16 @@
 	width: 190px;
 	background: linear-gradient(270deg, #005287, #4d82bc);
 	top: -24px;
-	right: 0;	
+	right: 0;
 	border-radius: 32px;
 }
 
 .screen__background__shape4 {
 	height: 400px;
 	width: 200px;
-	background: #84b6f4;	
+	background: #84b6f4;
 	top: 420px;
-	right: 50px;	
+	right: 50px;
 	border-radius: 60px;
 }
 
@@ -78,9 +78,9 @@
 }
 
 .login__field {
-	padding: 20px 0px;	
-	position: relative;	
-    color: #000035;
+	padding: 20px 0px;
+	position: relative;
+	color: #000035;
 }
 
 .login__input {
@@ -92,7 +92,7 @@
 	font-weight: 700;
 	width: 75%;
 	transition: .2s;
-    color: #000035;
+	color: #000035;
 }
 
 .login__input:active,
@@ -128,16 +128,16 @@
 }
 
 .login-title {
-    color: #000053;
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 2.5em;
-    font-family: "League Spartan", sans-serif;
-    padding-top: 40px;
+	color: #000053;
+	text-align: center;
+	margin-bottom: 20px;
+	font-size: 2.5em;
+	font-family: "League Spartan", sans-serif;
+	padding-top: 40px;
 }
 
 .button-container {
-    display: flex;
-    justify-content: space-between; 
-    margin-top: 20px;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
 }

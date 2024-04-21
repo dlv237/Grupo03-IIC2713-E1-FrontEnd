@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./index.css";
-import Button from "../common/Button";
+import Button from "../common/button.jsx";
+import LocationInfo from "../common/LocationInfo.jsx";
 
 const Flight = () => {
   const [flight, setFlight] = useState(null);
   const { id } = useParams();
+  const [showLocationInfo, setShowLocationInfo] = useState(false);
 
   useEffect(() => {
     const fetchFlight = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/flights/${id}`);
+        const response = await fetch(`https://flightsbooking.me/flights/${id}`);
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -124,6 +126,23 @@ const Flight = () => {
             </tr>
             <tr>
               <td>
+                <strong>Fecha de salida:</strong>
+              </td>
+              <td>
+                {flight.flights[0].departure_airport.time &&
+                !isNaN(Date.parse(flight.flights[0].departure_airport.time))
+                  ? new Date(
+                      flight.flights[0].departure_airport.time,
+                    ).toLocaleDateString("es-ES", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    })
+                  : "Fecha de salida no disponible"}
+              </td>
+            </tr>
+            <tr>
+              <td>
                 <strong>Precio:</strong>
               </td>
               <td>
@@ -146,6 +165,15 @@ const Flight = () => {
             </Button>
           </div>
         </div>
+
+        <button
+          className="BORRAR_ESTE_BOTON_E_IMPLEMENTAR_UBICACION_EN_EL_DE_ARRIBA"
+          onClick={() => setShowLocationInfo(true)}
+        >
+          Obtener Ubicacion (Borrar este boton, lo puse porque hay que
+          conectarlo con lo otro también pero para que vean como funciona)
+        </button>
+        {showLocationInfo && <LocationInfo />}
       </div>
     </div>
   );
