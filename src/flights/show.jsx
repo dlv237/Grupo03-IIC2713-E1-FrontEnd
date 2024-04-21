@@ -10,7 +10,7 @@ const Flight = () => {
   useEffect(() => {
     const fetchFlight = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/flights/${id}`);
+        const response = await fetch(`https://flightsbooking.me/flights/${id}`);
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -121,6 +121,23 @@ const Flight = () => {
                 <strong>Avión:</strong>
               </td>
               <td>{innerFlight.airplane}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Fecha de salida:</strong>
+              </td>
+              <td>
+                {flight.flights[0].departure_airport.time &&
+                !isNaN(Date.parse(flight.flights[0].departure_airport.time))
+                  ? new Date(
+                      flight.flights[0].departure_airport.time,
+                    ).toLocaleDateString("es-ES", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    })
+                  : "Fecha de salida no disponible"}
+              </td>
             </tr>
             <tr>
               <td>
