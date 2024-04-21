@@ -39,7 +39,7 @@ const Flight = () => {
       flights: id,
       ticketCount: ticketCount,
     };
-    const url = `https://flightsbooking.me/${data.email}/buy`; 
+    const url = `https://flightsbooking.me/buy`; 
   
     try {
       const response = await fetch(url, {
