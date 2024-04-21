@@ -17,11 +17,14 @@ function Register() {
     e.preventDefault();
     console.log(user);
     try {
-      const response = await axios.post("https://flightsbooking.me/users", user);
+      const response = await axios.post(
+        "https://flightsbooking.me/users",
+        user,
+      );
       if (response.status === 200) {
         navigate("/");
       } else {
-        console.log(error);
+        console.log("error al registrar, si llego reponse");
       }
     } catch (error) {
       console.error("Error al registrar:", error);
