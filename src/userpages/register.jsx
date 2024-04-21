@@ -1,6 +1,7 @@
 import "./register.css";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import axios from "axios";
 
 function Register() {
   const navigate = useNavigate();
@@ -15,17 +16,11 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
-      if (response.ok) {
-        navigate("/"); // Redireccionar a la página de inicio después del registro
+      const response = await axios.post("https://localhost:3000/users", user);
+      if (response.status === 200) {
+        navigate("/");
       } else {
-        // Manejar errores de registro
+        console.log(error);
       }
     } catch (error) {
       console.error("Error al registrar:", error);
@@ -33,7 +28,7 @@ function Register() {
   };
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setUser({ ...user, [e.target.name]: e.target.value });
   };
 
   return (
@@ -54,17 +49,17 @@ function Register() {
                       name="name"
                       value={user.name}
                       onChange={handleChange}
-                    ></input>
+                    />
                   </div>
                   <div className="register__field">
                     <input
-                      type="mail"
+                      type="email"
                       className="login__input"
                       placeholder="Mail"
                       name="email"
                       value={user.email}
                       onChange={handleChange}
-                    ></input>
+                    />
                   </div>
                   <div className="register__field">
                     <input
@@ -74,7 +69,7 @@ function Register() {
                       name="phone"
                       value={user.phone}
                       onChange={handleChange}
-                    ></input>
+                    />
                   </div>
                   <div className="register__field">
                     <input
@@ -84,10 +79,10 @@ function Register() {
                       name="password"
                       value={user.password}
                       onChange={handleChange}
-                    ></input>
+                    />
                   </div>
                   <div className="login-buttons-container">
-                    <button className="button login__submit">
+                    <button type="submit" className="button login__submit">
                       <span className="button__text">Continuar</span>
                     </button>
                     <button
