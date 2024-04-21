@@ -4,7 +4,6 @@ import Login from "../userpages/login";
 import Register from "../userpages/register";
 import Flight from "../flights/show";
 import Flights from "../flights/index";
-import Flights from "../flights/index";
 
 const PageRoutes = () => {
   return (
