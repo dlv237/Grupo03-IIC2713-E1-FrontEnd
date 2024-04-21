@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./index.css";
-import Button from "../common/Button.jsx";
+import Button from "../common/button.jsx";
 
 const Flight = () => {
   const [flight, setFlight] = useState(null);
