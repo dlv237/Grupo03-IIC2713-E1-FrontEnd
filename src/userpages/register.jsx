@@ -1,8 +1,36 @@
 import "./register.css";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 
 function Register() {
   const navigate = useNavigate();
+
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    password: "",
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(user);
+    try {
+      const response = await axios.post("https://flightsbooking.me/users", user);
+      if (response.status === 200) {
+        navigate("/");
+      } else {
+        console.log(error);
+      }
+    } catch (error) {
+      console.error("Error al registrar:", error);
+    }
+  };
+
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
 
   return (
     <div className="landing-container">
@@ -13,37 +41,49 @@ function Register() {
             <div className="screen">
               <div className="screen__content">
                 <h2 className="register-title">Registrarse</h2>
-                <form className="register">
+                <form className="register" onSubmit={handleSubmit}>
                   <div className="register__field">
                     <input
                       type="text"
                       className="login__input"
                       placeholder="Nombre"
-                    ></input>
+                      name="name"
+                      value={user.name}
+                      onChange={handleChange}
+                    />
                   </div>
                   <div className="register__field">
                     <input
-                      type="mail"
+                      type="email"
                       className="login__input"
                       placeholder="Mail"
-                    ></input>
+                      name="email"
+                      value={user.email}
+                      onChange={handleChange}
+                    />
                   </div>
                   <div className="register__field">
                     <input
                       type="text"
                       className="login__input"
                       placeholder="Telefono"
-                    ></input>
+                      name="phone"
+                      value={user.phone}
+                      onChange={handleChange}
+                    />
                   </div>
                   <div className="register__field">
                     <input
                       type="password"
                       className="login__input"
                       placeholder="Contraseña"
-                    ></input>
+                      name="password"
+                      value={user.password}
+                      onChange={handleChange}
+                    />
                   </div>
                   <div className="login-buttons-container">
-                    <button className="button login__submit">
+                    <button type="submit" className="button login__submit">
                       <span className="button__text">Continuar</span>
                     </button>
                     <button
