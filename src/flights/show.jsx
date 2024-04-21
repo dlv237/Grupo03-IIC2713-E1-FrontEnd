@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./index.css";
 import Button from "../common/button.jsx";
-import LocationInfo from '../common/LocationInfo.jsx';
+import LocationInfo from "../common/LocationInfo.jsx";
 
 const Flight = () => {
   const [flight, setFlight] = useState(null);
   const { id } = useParams();
   const [showLocationInfo, setShowLocationInfo] = useState(false);
-
 
   useEffect(() => {
     const fetchFlight = async () => {
@@ -131,14 +130,14 @@ const Flight = () => {
               </td>
               <td>
                 {flight.flights[0].departure_airport.time &&
-                  !isNaN(Date.parse(flight.flights[0].departure_airport.time))
+                !isNaN(Date.parse(flight.flights[0].departure_airport.time))
                   ? new Date(
-                    flight.flights[0].departure_airport.time,
-                  ).toLocaleDateString("es-ES", {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  })
+                      flight.flights[0].departure_airport.time,
+                    ).toLocaleDateString("es-ES", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    })
                   : "Fecha de salida no disponible"}
               </td>
             </tr>
@@ -164,18 +163,17 @@ const Flight = () => {
             >
               Comprar vuelo
             </Button>
-
-
-
-
-
           </div>
-
         </div>
 
-        <button class="BORRAR_ESTE_BOTON_E_IMPLEMENTAR_UBICACION_EN_EL_DE_ARRIBA" onClick={() => setShowLocationInfo(true)}>Obtener Ubicacion (Borrar este boton, lo puse porque hay que conectarlo con lo otro también pero para que vean como funciona)</button>
+        <button
+          className="BORRAR_ESTE_BOTON_E_IMPLEMENTAR_UBICACION_EN_EL_DE_ARRIBA"
+          onClick={() => setShowLocationInfo(true)}
+        >
+          Obtener Ubicacion (Borrar este boton, lo puse porque hay que
+          conectarlo con lo otro también pero para que vean como funciona)
+        </button>
         {showLocationInfo && <LocationInfo />}
-
       </div>
     </div>
   );
