@@ -7,6 +7,12 @@ const Flight = () => {
   const [flight, setFlight] = useState(null);
   const { id } = useParams();
 
+  const [ticketCount, setTicketCount] = useState(1);
+  const handleTicketCountChange = (event) => {
+    setTicketCount(event.target.value);
+  };
+
+
   useEffect(() => {
     const fetchFlight = async () => {
       try {
@@ -18,7 +24,7 @@ const Flight = () => {
 
         const data = await response.json();
         console.log(data);
-        setFlight(data);
+        setFlight(data.flight);
       } catch (error) {
         console.error("Error fetching flights:", error);
       }
@@ -27,9 +33,40 @@ const Flight = () => {
     fetchFlight();
   }, [id]);
 
-  if (!flight) {
+  const handleBuyFlight = async () => {
+    const data = {
+      email: 'test@test',
+      flights: id,
+      ticketCount: ticketCount,
+    };
+    const url = `https://flightsbooking.me/${data.email}/buy`; 
+  
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      const responseData = await response.json();
+      console.log(responseData);
+    } catch (error) {
+      console.error('Error buying flight:', error);
+    }
+  };
+
+  if (!flight || !flight.flights || flight.flights.length === 0) {
     return null;
   }
+
+  const maxTickets = Math.min(flight.seats_available, 4);
+  const canBuyTickets = ticketCount > 0 && ticketCount <= maxTickets;
 
   const departureDate = new Date(flight.flights[0].departure_airport.time);
   const arrivalDate = new Date(flight.flights[0].arrival_airport.time);
@@ -112,12 +149,6 @@ const Flight = () => {
             </tr>
             <tr>
               <td>
-                <strong>Emisiones:</strong>
-              </td>
-              <td>{flight.carbonEmission.this_flight}</td>
-            </tr>
-            <tr>
-              <td>
                 <strong>Avión:</strong>
               </td>
               <td>{innerFlight.airplane}</td>
@@ -151,16 +182,26 @@ const Flight = () => {
                 CLP
               </td>
             </tr>
+            <tr>
+              <td>
+                <strong>Asientos disponibles:</strong>
+              </td>
+              <td>
+                {flight.seats_available} de 90
+              </td>
+            </tr>
           </table>
           <div className="section-2">
-            <Button
-              onClick={() => {
-                /* Cuando tengamos lista la comunicacion veo como lo mando pero seria un post a
-                    la api, la api manda al cliente comprobador y le llegara respuesta, llega a la api y la api avisa aqui la respuesta y la manejamos*/
-              }}
-            >
-              Comprar vuelo
-            </Button>
+            <input 
+              type="number" 
+              min="1" 
+              max={maxTickets} 
+              value={ticketCount} 
+              onChange={handleTicketCountChange} 
+              disabled={!canBuyTickets} 
+            />
+            <Button onClick={handleBuyFlight}>Comprar vuelo</Button>
+            {!canBuyTickets && <p>No quedan vuelos disponibles</p>}
           </div>
         </div>
       </div>
