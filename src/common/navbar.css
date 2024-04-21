@@ -1,4 +1,5 @@
-body, .navbar-container {
+body,
+.navbar-container {
     margin: 0;
     padding: 0;
 }
