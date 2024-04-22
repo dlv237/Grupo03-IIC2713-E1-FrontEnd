@@ -6,7 +6,7 @@ import PageRoutes from "./common/router";
 import { Auth0Provider } from "@auth0/auth0-react";
 
 const authorizationParams = {
-  redirect_uri: window.location.origin + "/flights", // Auth0 redirige a "flights"
+  redirect_uri: window.location.origin + "/search", // Auth0 redirige a "flights"
   // audience:,  // aqui deberia ir un API_IDENTIFIER, me imagino que
   // cuando conectemos con el backend se dara
   scope: "openid profile email",
