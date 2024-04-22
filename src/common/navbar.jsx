@@ -16,11 +16,6 @@ function Navbar() {
       </li>
       <div className="right-container">
         <li className="navbar-li">
-          <Link to="/register" className="navbar-a">
-            Registrarte
-          </Link>
-        </li>
-        <li className="navbar-li">
           {isAuthenticated ? (
             <LogoutButton className="login-button"></LogoutButton>
           ) : (
