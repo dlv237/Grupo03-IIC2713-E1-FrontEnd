@@ -43,7 +43,7 @@ const UserFlights = () => {
 
   const getFlightById = async (flightId) => {
     try {
-      const response = await axios.get(`https://flightsbooking.me/flights/${flightId}`);
+      const response = await axios.get(`https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion3/flights/${flightId}`);
       return response.data;
     } catch (error) {
       console.error('Error fetching flight by ID:', error);

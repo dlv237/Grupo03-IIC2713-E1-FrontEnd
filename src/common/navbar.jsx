@@ -14,10 +14,24 @@ function Navbar() {
           FlightsBooking
         </Link>
       </li>
+      <li className="navbar-li">
+        <Link to="/search" className="navbar-a">
+          Buscar Vuelos
+        </Link>
+      </li>
       <div className="right-container">
         <li className="navbar-li">
           {isAuthenticated ? (
-            <LogoutButton className="login-button"></LogoutButton>
+            <>
+            <li className="navbar-li">
+              <Link to="/my_flights" className="navbar-a">
+                  Mis Vuelos
+              </Link>
+            </li>
+            <li className="navbar-li">
+              <LogoutButton className="login-button"></LogoutButton>
+              </li>
+            </>
           ) : (
             <LoginButton className="navbar-a login-button"></LoginButton>
           )}

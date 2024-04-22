@@ -15,11 +15,13 @@ const Flights = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(4);
 
+  console.log("Location:", location);
+
   useEffect(() => {
     const fetchFlights = async () => {
       try {
         const response = await fetch(
-          `https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2${location.pathname}${location.search}`,
+          `https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/flights${location.search}`,
         );
         const data = await response.json();
         setFlights(data);

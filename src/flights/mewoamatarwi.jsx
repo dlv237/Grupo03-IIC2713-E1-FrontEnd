@@ -10,12 +10,12 @@ const MyComponent = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`https://flightsbooking.me/purchases/${user.email}`);
+                const response = await axios.get(`https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion3/purchases/${user.email}`);
                 setData(response.data);
                 console.log('Server response:', response.data);
 
                 const flightResponses = await Promise.all(response.data.map(item => 
-                    axios.get(`https://flightsbooking.me/flights/${item.flight}`)
+                    axios.get(`https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion3/flights/${item.flight}`)
                 ));
                 setFlights(flightResponses.map(res => res.data));
                 console.log('Flights data:', flightResponses.map(res => res.data));
@@ -36,15 +36,22 @@ const MyComponent = () => {
             </div>
             {data && flights && data.map((item, index) => {
                 const flight = flights[index].flight;
+                const innerFlight = flight.flights[0];
+                const fecha = new Date(innerFlight.departure_airport.time);
                 console.log('Flight:', flight);
                 return (
                     <div key={index} className="flight-card">
                         <div className="section-1">
                             <div>
+                                <h2 style={{ marginRight: "20px", marginLeft: "40px" }}>
+                                        {innerFlight.departure_airport.id} ➔{" "}
+                                        {innerFlight.arrival_airport.id}
+                                </h2>
+                                <p>Fecha de salida: {fecha.toLocaleDateString()}</p>
                                 <h1>Datos de la compra:</h1>
                                 <p>Total Tickets: {item.total_tickets}</p>
                                 <p>Flight ID: {flight._id}</p>
-                                <p>Status: {item.status ? 'True' : 'False'}</p>
+                                <p>Status: {item.status ? 'Compra validada' : 'Compra invalidada'}</p>
                                 <Link to={`/flights/${flight._id}`}>Ver detalles del vuelo</Link>
                             </div>
                         </div>
