@@ -7,43 +7,49 @@ const UserFlights = () => {
   const { user } = useAuth0();
 
   useEffect(() => {
-    const fetchUserFlights = async () => {
-      const url = `https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/purchases`;
-      const data = {
-        email: user.email
-      };
-      console.log(user.email);
+    const fetchPurchases = async () => {
+      const url = `https://flightsbooking.me/purchases/${user.email}`;
+
       try {
-        const response = await axios.get(url, {
-          params: data,
+        const response = await fetch(url, {
           headers: {
             'Content-Type': 'application/json',
           },
         });
-        console.log('Server response:', response.data);
-        const flightPromises = Object.values(response.data)
-          .filter(purchase => purchase.flight) // Filtrar vuelos no definidos
-          .map(purchase => axios.get(`https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/flights/${purchase.flight}`));
 
-        const flightResponses = await Promise.all(flightPromises);
-        const flightsData = flightResponses.map(res => res.data);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('Server response:', data);
+
+        const flightIds = data
+          .filter(purchase => purchase.flight)
+          .map(purchase => purchase.flight);
+
+        const flightsData = await Promise.all(flightIds.map(getFlightById));
         console.log('Flights data:', flightsData);
         setFlights(flightsData);
       } catch (error) {
-        if (error.response) {
-          console.error('Error fetching user flights:', error.response.data);
-        } else if (error.request) {
-          console.error('Network Error:', error.request);
-        } else {
-          console.error('Error:', error.message);
-        }
+        console.error('Error fetching user flights:', error);
       }
     };
 
     if (user) {
-      fetchUserFlights();
+      fetchPurchases();
     }
   }, [user]);
+
+  const getFlightById = async (flightId) => {
+    try {
+      const response = await axios.get(`https://flightsbooking.me/flights/${flightId}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching flight by ID:', error);
+      throw error;
+    }
+  };
 
   return (
     <div className="flight-container">

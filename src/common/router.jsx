@@ -6,6 +6,7 @@ import Flight from "../flights/show";
 import Flights from "../flights/index";
 import Search from "../flights/search";
 import UserFlights from "../flights/userflights";
+import MyComponent from "../flights/mewoamatarwi";
 
 
 const PageRoutes = () => {
@@ -17,7 +18,8 @@ const PageRoutes = () => {
       <Route path="/flights" element={<Flights />} />
       <Route path="/flights/:id" element={<Flight />} />
       <Route path="/search" element={<Search />} />
-      <Route path="/my_flights" element={<UserFlights />} />
+      <Route path="/xd" element={<UserFlights />} />
+      <Route path="/my_flights" element={<MyComponent />} />
     </Routes>
   );
 };

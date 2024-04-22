@@ -46,7 +46,7 @@ const Search = () => {
           onChange={(e) => setInput3(e.target.value)}
         />
         <Link to={`/flights?${params.toString()}`}>
-          <Button simple>Reservar vuelo</Button>
+          <Button simple>Buscar vuelos</Button>
         </Link>
       </div>
     </div>

@@ -18,7 +18,7 @@ function Register() {
     console.log(user);
     try {
       const response = await axios.post(
-        "https://flightsbooking.me/users",
+        "https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/users",
         user,
       );
       if (response.status === 200) {
