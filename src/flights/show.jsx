@@ -35,11 +35,11 @@ const Flight = () => {
 
   const handleBuyFlight = async () => {
     const data = {
-      email: 'test@test',
-      flights: id,
+      email: 'test@test.com', // reemplaza esto con el email del usuario
+      flights: id, // reemplaza esto con el ID del vuelo
       ticketCount: ticketCount,
     };
-    const url = `https://flightsbooking.me/buy`; 
+    const url = `https://flightsbooking.me/${data.email}/buy`;
   
     try {
       const response = await fetch(url, {
@@ -60,6 +60,9 @@ const Flight = () => {
       console.error('Error buying flight:', error);
     }
   };
+  
+  
+  <Button onClick={handleBuyFlight}>Comprar vuelo</Button>
 
   if (!flight || !flight.flights || flight.flights.length === 0) {
     return null;
