@@ -1,19 +1,25 @@
 import "../common/button.css";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
 
 const LogoutButton = () => {
   const { logout, isAuthenticated } = useAuth0();
 
+  const handleLogout = () => {
+    logout();
+  };
+
   if (isAuthenticated) {
     return (
       <>
-        <button
-          className="login-button"
-          // onClick={() => logout({ returnTo: window.location.origin })}
-          onClick={() => logout({ returnTo: "https://flightsbooking.me/" })}
-        >
-          Cerrar Sesión
-        </button>
+        <Link to="/">
+          <button
+            className="login-button"
+            onClick={handleLogout}
+          >
+            Cerrar Sesión
+          </button>
+        </Link>
         <br />
       </>
     );
