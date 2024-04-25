@@ -9,7 +9,8 @@ const LogoutButton = () => {
       <>
         <button
           className="login-button"
-          onClick={() => logout({ returnTo: window.location.origin })}
+          // onClick={() => logout({ returnTo: window.location.origin })}
+          onClick={() => logout({ returnTo: "https://flightsbooking.me/" })}
         >
           Cerrar Sesión
         </button>
