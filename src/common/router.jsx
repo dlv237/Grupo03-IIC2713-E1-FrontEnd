@@ -8,22 +8,23 @@ import Flights from "../flights/index";
 import Search from "../flights/search";
 import UserFlights from "../flights/userflights";
 import VistaCompras from "../flights/userBuys";
-import Forbidden from "../flights/forbidden";
 
-const PageRoutes = () => {
+const ProtectedComponent = ({ component: Component }) => {
   const { isAuthenticated } = useAuth0();
 
+  return isAuthenticated ? <Component /> : null;
+};
+
+const PageRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Landingpage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/forbidden" element={<Forbidden />} />
-      <Route path="/flights" element={isAuthenticated ? <Flights /> : <Navigate to="/forbidden" />} />
-      <Route path="/flights/:id" element={isAuthenticated ? <Flight /> : <Navigate to="/forbidden" />} />
-      <Route path="/search" element={isAuthenticated ? <Search /> : <Navigate to="/forbidden" />} />
-      <Route path="/xd" element={isAuthenticated ? <UserFlights /> : <Navigate to="/forbidden" />} />
-      <Route path="/my_flights" element={isAuthenticated ? <VistaCompras /> : <Navigate to="/forbidden" />} />
+      <Route path="/flights" element={<ProtectedComponent component={Flights} />} />
+      <Route path="/flights/:id" element={<ProtectedComponent component={Flight} />} />
+      <Route path="/search" element={<ProtectedComponent component={Search} />} />
+      <Route path="/my_flights" element={<ProtectedComponent component={VistaCompras} />} />
     </Routes>
   );
 };
