@@ -24,6 +24,11 @@ function Navbar() {
           {isAuthenticated ? (
             <>
             <li className="navbar-li">
+              <Link to="/recomendations" className="navbar-a">
+                  ¿No sabes a donde ir?
+              </Link>
+            </li>
+            <li className="navbar-li">
               <Link to="/my_flights" className="navbar-a">
                   Mis Vuelos
               </Link>

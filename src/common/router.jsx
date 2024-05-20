@@ -8,6 +8,7 @@ import Flights from "../flights/index";
 import Search from "../flights/search";
 import UserFlights from "../flights/userflights";
 import VistaCompras from "../flights/userBuys";
+import Recomendation from "../flights/recomendations/recomendations";
 
 const ProtectedComponent = ({ component: Component }) => {
   const { isAuthenticated } = useAuth0();
@@ -25,6 +26,7 @@ const PageRoutes = () => {
       <Route path="/flights/:id" element={<ProtectedComponent component={Flight} />} />
       <Route path="/search" element={<ProtectedComponent component={Search} />} />
       <Route path="/my_flights" element={<ProtectedComponent component={VistaCompras} />} />
+      <Route path="/recomendations" element={<ProtectedComponent component={Recomendation}/>} />
     </Routes>
   );
 };
