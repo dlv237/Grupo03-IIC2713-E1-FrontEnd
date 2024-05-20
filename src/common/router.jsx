@@ -8,7 +8,7 @@ import Flights from "../flights/index";
 import Search from "../flights/search";
 import UserFlights from "../flights/userflights";
 import VistaCompras from "../flights/userBuys";
-import Recomendation from "../flights/recomendations/recomendations";
+import Recomendation from "../flights/recomendations";
 
 const ProtectedComponent = ({ component: Component }) => {
   const { isAuthenticated } = useAuth0();
