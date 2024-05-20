@@ -23,7 +23,7 @@ const Flight = () => {
   useEffect(() => {
     const fetchFlight = async () => {
       try {
-        const response = await fetch(`https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion3/flights/${id}`);
+        const response = await fetch(`https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/flights/${id}`);
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -50,7 +50,7 @@ const Flight = () => {
       total_tickets_bought: ticketCount,
       ip_flight: ip
     };
-    const url = `https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion3/buy`;
+    const url = `https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/buy`;
   
     try {
       const response = await axios.post(url, data, {

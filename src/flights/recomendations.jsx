@@ -10,7 +10,7 @@ function Recomendation() {
     useEffect(() => {
         const getRecomendedFlights = async () => {
             try {
-                const response = await axios.get(`https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion3/recomendations/${user.email}`);
+                const response = await axios.get(`https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/recomendations/${user.email}`);
                 setRecomendedFlights(response.data);
             } catch (error) {
                 console.error('Error fetching user recommendations', error);
