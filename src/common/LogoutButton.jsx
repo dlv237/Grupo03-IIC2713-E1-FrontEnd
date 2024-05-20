@@ -13,10 +13,7 @@ const LogoutButton = () => {
     return (
       <>
         <Link to="/">
-          <button
-            className="login-button"
-            onClick={handleLogout}
-          >
+          <button className="login-button" onClick={handleLogout}>
             Cerrar Sesión
           </button>
         </Link>

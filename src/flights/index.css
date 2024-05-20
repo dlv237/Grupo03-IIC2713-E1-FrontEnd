@@ -1,5 +1,8 @@
 body {
     background-image: url("../assets/Fondo_avion.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
 }
 
 .flight-container {

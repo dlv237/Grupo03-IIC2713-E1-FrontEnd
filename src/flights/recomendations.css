@@ -1,0 +1,26 @@
+.recomendations-container{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.left-recomendation-container {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.right-recomendation-container {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.texto-titulo-recomendaciones {
+    font-size: 40px;
+    font-family: "League Spartan", sans-serif;
+    color: #000053;
+    text-align: center;
+    margin-top: 70px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 30px;
+}
