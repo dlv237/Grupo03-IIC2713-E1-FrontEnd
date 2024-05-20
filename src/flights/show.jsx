@@ -41,10 +41,14 @@ const Flight = () => {
   }, [id]);
 
   const handleBuyFlight = async () => {
+    const ip = await fetch(
+      `https://ipinfo.io/json?token=9704d049333821`,
+    );
     const data = {
       email: user.email, 
       flights: id, 
       total_tickets_bought: ticketCount,
+      ip_flight: ip
     };
     const url = `https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion3/buy`;
   
