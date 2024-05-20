@@ -32,7 +32,6 @@ const VistaCompras = () => {
         console.error(error);
       }
     };
-
     if (user && user.email) {
       fetchData();
     }
