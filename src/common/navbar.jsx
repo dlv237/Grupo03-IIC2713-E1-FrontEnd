@@ -23,13 +23,18 @@ function Navbar() {
         <li className="navbar-li">
           {isAuthenticated ? (
             <>
-            <li className="navbar-li">
-              <Link to="/my_flights" className="navbar-a">
+              <li className="navbar-li">
+                <Link to="/recomendations" className="navbar-a">
+                  ¿No sabes a donde ir?
+                </Link>
+              </li>
+              <li className="navbar-li">
+                <Link to="/my_flights" className="navbar-a">
                   Mis Vuelos
-              </Link>
-            </li>
-            <li className="navbar-li">
-              <LogoutButton className="login-button"></LogoutButton>
+                </Link>
+              </li>
+              <li className="navbar-li">
+                <LogoutButton className="login-button"></LogoutButton>
               </li>
             </>
           ) : (
