@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../common/button.jsx";
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import axios from 'axios';
 
 const Search = () => {
   const [input1, setInput1] = useState("");
@@ -12,6 +14,21 @@ const Search = () => {
     arrival: input2,
     date: input3,
   });
+
+  const { user, isAuthenticated } = useAuth0();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      axios.post('https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/users', {
+        name: "None",
+        email: user.email,
+        password: "None",
+        phone: "None",
+      });
+      console.log('User created')
+    }
+  }, [isAuthenticated, user]);
+    
 
   return (
     <div className="flight-container">
