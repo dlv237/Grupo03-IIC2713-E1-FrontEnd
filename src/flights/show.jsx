@@ -4,9 +4,7 @@ import "./index.css";
 import Button from "../common/button.jsx";
 import LocationInfo from "../common/LocationInfo.jsx";
 import axios from 'axios';
-import {useAuth0} from "@auth0/auth0-react"
-
-
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Flight = () => {
   const [flight, setFlight] = useState(null);
@@ -19,16 +17,13 @@ const Flight = () => {
     setTicketCount(event.target.value);
   };
 
-
   useEffect(() => {
     const fetchFlight = async () => {
       try {
-        const response = await fetch(`https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion3/flights/${id}`);
-
+        const response = await fetch(`https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/flights/${id}`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-
         const data = await response.json();
         console.log(data);
         setFlight(data.flight);
@@ -41,27 +36,31 @@ const Flight = () => {
   }, [id]);
 
   const handleBuyFlight = async () => {
-    const data = {
-      email: user.email, 
-      flights: id, 
-      total_tickets_bought: ticketCount,
-    };
-    const url = `https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion3/buy`;
-  
     try {
+      const ipResponse = await fetch(`https://ipinfo.io/json?token=9704d049333821`);
+      const ipData = await ipResponse.json();
+      
+      const data = {
+        email: user.email,
+        flights: id,
+        total_tickets_bought: ticketCount,
+        ip_flight: ipData.ip,
+      };
+      const url = `https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/buy`;
+
       const response = await axios.post(url, data, {
         headers: {
           'Content-Type': 'application/json',
         },
       });
-  
+
       console.log('Server response:', response.data);
       window.location.href = '/my_flights';
     } catch (error) {
       console.error('Error buying flight:', error);
     }
   };
-  
+
   if (!flight || !flight.flights || flight.flights.length === 0) {
     return null;
   }
@@ -112,85 +111,87 @@ const Flight = () => {
             </div>
           </div>
           <table className="flight-table">
-            <tr>
-              <td>
-                <strong>Airline:</strong>
-              </td>
-              <td>{innerFlight.airline}</td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Aeropuerto de salida:</strong>
-              </td>
-              <td> {innerFlight.departure_airport.name}</td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Hora de salida:</strong>
-              </td>
-              <td>{departureTime}</td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Aeropuerto de llegada:</strong>
-              </td>
-              <td>{innerFlight.arrival_airport.name}</td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Hora de llegada:</strong>
-              </td>
-              <td>{arrivalTime}</td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Duracion:</strong>
-              </td>
-              <td>{duration}</td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Avión:</strong>
-              </td>
-              <td>{innerFlight.airplane}</td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Fecha de salida:</strong>
-              </td>
-              <td>
-                {flight.flights[0].departure_airport.time &&
-                !isNaN(Date.parse(flight.flights[0].departure_airport.time))
-                  ? new Date(
-                      flight.flights[0].departure_airport.time,
-                    ).toLocaleDateString("es-ES", {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                    })
-                  : "Fecha de salida no disponible"}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Precio:</strong>
-              </td>
-              <td>
-                {flight.price.toLocaleString("es-CL", {
-                  style: "currency",
-                  currency: "CLP",
-                })}{" "}
-                CLP
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <strong>Asientos disponibles:</strong>
-              </td>
-              <td>
-                {flight.seats_available} de 90
-              </td>
-            </tr>
+            <tbody>
+              <tr>
+                <td>
+                  <strong>Airline:</strong>
+                </td>
+                <td>{innerFlight.airline}</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Aeropuerto de salida:</strong>
+                </td>
+                <td> {innerFlight.departure_airport.name}</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Hora de salida:</strong>
+                </td>
+                <td>{departureTime}</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Aeropuerto de llegada:</strong>
+                </td>
+                <td>{innerFlight.arrival_airport.name}</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Hora de llegada:</strong>
+                </td>
+                <td>{arrivalTime}</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Duracion:</strong>
+                </td>
+                <td>{duration}</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Avión:</strong>
+                </td>
+                <td>{innerFlight.airplane}</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Fecha de salida:</strong>
+                </td>
+                <td>
+                  {flight.flights[0].departure_airport.time &&
+                  !isNaN(Date.parse(flight.flights[0].departure_airport.time))
+                    ? new Date(
+                        flight.flights[0].departure_airport.time,
+                      ).toLocaleDateString("es-ES", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                      })
+                    : "Fecha de salida no disponible"}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Precio:</strong>
+                </td>
+                <td>
+                  {flight.price.toLocaleString("es-CL", {
+                    style: "currency",
+                    currency: "CLP",
+                  })}{" "}
+                  CLP
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Asientos disponibles:</strong>
+                </td>
+                <td>
+                  {flight.seats_available} de 90
+                </td>
+              </tr>
+            </tbody>
           </table>
           <div className="section-2">
             <input 

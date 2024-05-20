@@ -8,7 +8,7 @@ const UserFlights = () => {
 
   useEffect(() => {
     const fetchPurchases = async () => {
-      const url = `https://flightsbooking.me/purchases/${user.email}`;
+      const url = `https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/purchases/${user.email}`;
 
       try {
         const response = await fetch(url, {
