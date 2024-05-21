@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./index.css";
-import Button from "../common/button.jsx";
 import LocationInfo from "../common/LocationInfo.jsx";
-import axios from 'axios';
+import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Flight = () => {
   const [flight, setFlight] = useState(null);
   const { id } = useParams();
   const [showLocationInfo, setShowLocationInfo] = useState(false);
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user } = useAuth0();
   const [ticketCount, setTicketCount] = useState(1);
 
   const handleTicketCountChange = (event) => {
@@ -20,7 +19,9 @@ const Flight = () => {
   useEffect(() => {
     const fetchFlight = async () => {
       try {
-        const response = await fetch(`https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/flights/${id}`);
+        const response = await fetch(
+          `https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/flights/${id}`,
+        );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -37,9 +38,10 @@ const Flight = () => {
 
   const handleBuyFlight = async () => {
     try {
-
-      const ipResponse = await axios.get(`https://ipinfo.io/json?token=9704d049333821`);
-      console.log(ipResponse.data)
+      const ipResponse = await axios.get(
+        `https://ipinfo.io/json?token=9704d049333821`,
+      );
+      console.log(ipResponse.data);
 
       const data = {
         email: user.email,
@@ -51,14 +53,14 @@ const Flight = () => {
 
       const response = await axios.post(url, data, {
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       });
 
-      console.log('Server response:', response.data);
-      window.location.href = '/my_flights';
+      console.log("Server response:", response.data);
+      window.location.href = "/my_flights";
     } catch (error) {
-      console.error('Error buying flight:', error);
+      console.error("Error buying flight:", error);
     }
   };
 
@@ -188,30 +190,26 @@ const Flight = () => {
                 <td>
                   <strong>Asientos disponibles:</strong>
                 </td>
-                <td>
-                  {flight.seats_available} de 90
-                </td>
+                <td>{flight.seats_available} de 90</td>
               </tr>
             </tbody>
           </table>
           <div className="section-2">
-            <input 
+            <input
               className="input-field"
-              type="number" 
-              min="1" 
-              max={maxTickets} 
-              value={ticketCount} 
-              onChange={handleTicketCountChange} 
-              disabled={!canBuyTickets} 
+              type="number"
+              min="1"
+              max={maxTickets}
+              value={ticketCount}
+              onChange={handleTicketCountChange}
+              disabled={!canBuyTickets}
             />
             <button onClick={handleBuyFlight}>Comprar vuelo</button>
             {!canBuyTickets && <p>No quedan vuelos disponibles</p>}
           </div>
         </div>
 
-        <button
-          onClick={() => setShowLocationInfo(true)}
-        >
+        <button onClick={() => setShowLocationInfo(true)}>
           Obtener Ubicacion (Tendrá un uso posteriormente)
         </button>
         {showLocationInfo && <LocationInfo />}

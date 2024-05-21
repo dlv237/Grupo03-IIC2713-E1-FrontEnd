@@ -13,7 +13,6 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
-    margin-bottom: 60px;
 }
   
 .texto-titulo-recomendaciones {
@@ -80,5 +79,56 @@
     padding: 20px;
     background-color: white;
     text-align: center;
+}
+  
+.recommendation-image {
+    margin-left: 40px;
+}
+
+.flight-cell {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+  
+.flight-cell:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+  
+.recommendation-buy-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+  
+.recommendation-buy-button:hover {
+    background-color: #0056b3;
+}
+  
+.flight-details {
+    width: 80%;
+    max-width: 600px;
+}
+  
+.flight-detail-cell {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: white;
+    text-align: center;
+}
+  
+.recommendation-image {
+    margin-right: 20px;
 }
   
