@@ -1,26 +1,65 @@
-.recomendations-container{
+.recomendations-container {
     display: flex;
-    justify-content: space-between;
-    padding: 20px;
 }
-
+  
 .left-recomendation-container {
     flex: 1;
-    margin-right: 10px;
+    padding: 20px;
 }
 
 .right-recomendation-container {
     flex: 1;
-    margin-left: 10px;
+    padding: 20px;
 }
 
 .texto-titulo-recomendaciones {
-    font-size: 40px;
+    font-size: 60px;
+    margin-bottom: 20px;
+    margin-top: 60px;
     font-family: "League Spartan", sans-serif;
     color: #000053;
-    text-align: center;
-    margin-top: 70px;
     background-color: white;
-    padding: 20px;
-    border-radius: 30px;
+    border-radius: 10px;
+}
+
+.recommendation-subtitle {
+    font-size: 30px;
+    margin-bottom: 10px;
+    font-family: "League Spartan", sans-serif;
+    color: #000053;
+    background-color: #c4dafa;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.recommendation-text {
+    margin: 0 10px;
+    font-family: "League Spartan", sans-serif;
+    color: #000053;
+    font-size: 20px;
+}
+
+.flight-cell {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+}
+
+.recommendation-buy-button {
+    margin-left: auto;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.recommendation-buy-button:hover {
+    background-color: #0056b3;
 }
