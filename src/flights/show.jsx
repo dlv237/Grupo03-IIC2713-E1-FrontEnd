@@ -37,14 +37,15 @@ const Flight = () => {
 
   const handleBuyFlight = async () => {
     try {
-      const ipResponse = await fetch(`https://ipinfo.io/json?token=9704d049333821`);
-      const ipData = await ipResponse.json();
-      
+
+      const ipResponse = await axios.get(`https://ipinfo.io/json?token=9704d049333821`);
+      console.log(ipResponse.data)
+
       const data = {
         email: user.email,
         flights: id,
         total_tickets_bought: ticketCount,
-        ip_flight: ipData.ip,
+        ip_flight: ipResponse.data.ip,
       };
       const url = `https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/buy`;
 

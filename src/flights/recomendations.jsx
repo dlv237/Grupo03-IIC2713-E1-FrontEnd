@@ -11,7 +11,7 @@ function Recomendation() {
     const getRecomendedFlights = async () => {
       try {
         const response = await axios.get(
-          `https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/recomendations/${user.email}`,
+          `https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/recommendation/${user.email}`,
         );
         setRecomendedFlights(response.data);
       } catch (error) {
