@@ -1,26 +1,134 @@
-.recomendations-container{
+.recomendations-container {
     display: flex;
-    justify-content: space-between;
-    padding: 20px;
 }
-
+  
 .left-recomendation-container {
     flex: 1;
-    margin-right: 10px;
+    padding: 20px;
 }
-
+  
 .right-recomendation-container {
     flex: 1;
-    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
-
+  
 .texto-titulo-recomendaciones {
-    font-size: 40px;
+    font-size: 60px;
+    margin-bottom: 20px;
+    margin-top: 60px;
     font-family: "League Spartan", sans-serif;
     color: #000053;
-    text-align: center;
-    margin-top: 70px;
     background-color: white;
-    padding: 20px;
-    border-radius: 30px;
+    border-radius: 10px;
 }
+  
+.recommendation-subtitle {
+    font-size: 30px;
+    margin-bottom: 10px;
+    font-family: "League Spartan", sans-serif;
+    color: #000053;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+  
+.recommendation-text {
+    margin: 0 10px;
+    font-family: "League Spartan", sans-serif;
+    color: #000053;
+    font-size: 20px;
+}
+  
+.flight-cell {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+    cursor: pointer;
+}
+  
+.recommendation-buy-button {
+    margin-left: auto;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.recommendation-buy-button:hover {
+    background-color: #0056b3;
+}
+  
+.flight-details {
+    width: 80%;
+    max-width: 600px;
+}
+  
+.flight-detail-cell {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: white;
+    text-align: center;
+}
+  
+.recommendation-image {
+    margin-left: 40px;
+}
+
+.flight-cell {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+  
+.flight-cell:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+  
+.recommendation-buy-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+  
+.recommendation-buy-button:hover {
+    background-color: #0056b3;
+}
+  
+.flight-details {
+    width: 80%;
+    max-width: 600px;
+}
+  
+.flight-detail-cell {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: white;
+    text-align: center;
+}
+  
+.recommendation-image {
+    margin-right: 20px;
+}
+  
