@@ -8,7 +8,9 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "lint_fix": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0 --fix",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "upload": "aws s3 sync dist/ s3://flightsdeploybucket --delete",
+    "invalidate": "aws cloudfront create-invalidation --distribution-id E1TASZURWXXX8L --paths '/*'"
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",

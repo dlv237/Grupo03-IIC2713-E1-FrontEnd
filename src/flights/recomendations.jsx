@@ -146,6 +146,9 @@ function Recomendation() {
                 Airline: {selectedFlight.flights[0].airline}
               </p>
               <p className="recommendation-text">
+                Airplane: {selectedFlight.flights[0].airplane}
+              </p>
+              <p className="recommendation-text">
                 Departure: {selectedFlight.flights[0].departure_airport.name}
               </p>
               <p className="recommendation-text">
