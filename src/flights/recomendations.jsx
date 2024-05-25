@@ -10,6 +10,7 @@ function Recomendation() {
   const { user } = useAuth0();
   const [loading, setLoading] = useState(true);
   const [recommendations, setRecommendations] = useState([]);
+  const [times, setTimes] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedFlight, setSelectedFlight] = useState(null);
 
@@ -18,8 +19,9 @@ function Recomendation() {
       const response = await axios.get(
         `https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/recommendation/${user.email}`,
       );
-      const data = response.data.recommendations;
-      setRecommendations(Array.isArray(data) ? data : []);
+      const data = response.data;
+      setRecommendations(Array.isArray(data.recommendations) ? data.recommendations : []);
+      setTimes(Array.isArray(data.times) ? data.times : []);
       setLoading(false);
       console.log("Fetched recommendations:", data);
     } catch (error) {
@@ -30,9 +32,19 @@ function Recomendation() {
 
   const updateRecommendedFlights = async (flightId) => {
     try {
+      const ipResponse = await axios.get(
+        `https://ipinfo.io/json?token=9704d049333821`,
+      );
+
+      const data = {
+        email: user.email,
+        flights: flightId,
+        ip_flight: ipResponse.data.ip,
+      };
+
       await axios.post(
         `https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/recommendation/update/${user.email}`,
-        { flightId }
+        data
       );
       console.log("Updated recommendations with flightId:", flightId);
     } catch (error) {
@@ -70,6 +82,7 @@ function Recomendation() {
   };
 
   const currentFlights = recommendations.length > 0 ? recommendations[currentPage] || [] : [];
+  const currentTime = times.length > 0 ? times[currentPage] || "" : "";
 
   if (loading) {
     return <LoadingSpinner />;
@@ -90,6 +103,7 @@ function Recomendation() {
                 <p className="recommendation-text">Arrival: {currentFlights[0].flights[0].arrival_airport.name}</p>
                 <p className="recommendation-text">Price: {currentFlights[0].price} {currentFlights[0].currency}</p>
                 <p className="recommendation-text">Seats Available: {currentFlights[0].seats_available}</p>
+                <p className="recommendation-text">Hora de la recomendacion: {currentTime}</p>
               </div>
               <Link to={`/flights/${currentFlights[0]._id}`}>
                 <Button simple>Reservar vuelo</Button>
