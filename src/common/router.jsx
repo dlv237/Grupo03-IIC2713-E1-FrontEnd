@@ -10,6 +10,7 @@ import Search from "../flights/search";
 import VistaCompras from "../flights/userBuys";
 import Recomendation from "../flights/recomendations";
 import Checkout from "../flights/checkout";
+import Email from "../flights/email"
 
 const ProtectedComponent = ({ component: Component }) => {
   const { isAuthenticated } = useAuth0();
@@ -46,6 +47,10 @@ const PageRoutes = () => {
       <Route
         path="/checkout"
         element={<ProtectedComponent component={Checkout} />}
+      />
+      <Route
+        path="/flights/email"
+        element={<ProtectedComponent component={Email} />}
       />
     </Routes>
   );
