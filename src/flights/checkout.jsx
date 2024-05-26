@@ -22,6 +22,9 @@ const Checkout = () => {
         );
         setFlightDetails(flightResponse.data.flight.flights);
         console.log('Flight details:', flightResponse.data.flight.flights);
+        console.log(flightDetails);
+        console.log(flightDetails[0].departure_airport.id);
+        console.log(flightDetails[0].arrival_airport.id);
       } catch (error) {
         console.error("Error fetching transaction:", error);
       }
@@ -31,9 +34,6 @@ const Checkout = () => {
   }, []);
 
   useEffect(() => {
-    console.log(flightDetails);
-    console.log(flightDetails.departure_airport.id);
-    console.log(flightDetails.arrival_airport.id);
     const postTransaction = async () => {
       try {
         if (transaction && transaction.status === "AUTHORIZED" && flightDetails) {
