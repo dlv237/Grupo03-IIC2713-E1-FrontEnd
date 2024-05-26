@@ -25,17 +25,19 @@ const Checkout = () => {
   }, []);
 
   useEffect(() => {
+    const { user } = useAuth0();
+
     const postTransaction = async () => {
       try {
         if (transaction && transaction.status === "AUTHORIZED") {
-            sendEmail();
-          const data = {
-            email: user.email,
-            flights: id,
-            total_tickets_bought: ticketCount,
-            ip_flight: ipResponse.data.ip,
-          };
-          await axios.post("https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/buy", data);
+            const data = {
+                email: user.email,
+                flights: id,
+                total_tickets_bought: ticketCount,
+                ip_flight: ipResponse.data.ip,
+            };
+            await axios.post("https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/buy", data);
+            sendEmail(user.email);
         }
       } catch (error) {
         console.error("Error posting transaction:", error);
