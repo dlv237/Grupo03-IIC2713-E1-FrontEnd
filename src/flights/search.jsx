@@ -20,7 +20,7 @@ const Search = () => {
   useEffect(() => {
     if (isAuthenticated) {
       axios.post(
-        "https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/users",
+        "https://flightsbooking.me/users",
         {
           name: "None",
           email: user.email,

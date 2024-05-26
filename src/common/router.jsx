@@ -9,6 +9,7 @@ import Flights from "../flights/index";
 import Search from "../flights/search";
 import VistaCompras from "../flights/userBuys";
 import Recomendation from "../flights/recomendations";
+import Checkout from "../flights/checkout";
 
 const ProtectedComponent = ({ component: Component }) => {
   const { isAuthenticated } = useAuth0();
@@ -41,6 +42,10 @@ const PageRoutes = () => {
       <Route
         path="/recomendations"
         element={<ProtectedComponent component={Recomendation} />}
+      />
+      <Route
+        path="/checkout"
+        element={<ProtectedComponent component={Checkout} />}
       />
     </Routes>
   );

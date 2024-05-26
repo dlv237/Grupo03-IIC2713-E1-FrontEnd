@@ -11,7 +11,7 @@ const VistaCompras = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/purchases/${user.email}`,
+          `https://flightsbooking.me/purchases/${user.email}`,
         );
         setData(response.data);
         console.log("Server response:", response.data);
@@ -19,7 +19,7 @@ const VistaCompras = () => {
         const flightResponses = await Promise.all(
           response.data.map((item) =>
             axios.get(
-              `https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/flights/${item.flight}`,
+              `https://flightsbooking.me/flights/${item.flight}`,
             ),
           ),
         );
