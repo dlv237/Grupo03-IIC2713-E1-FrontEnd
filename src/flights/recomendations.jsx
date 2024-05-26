@@ -13,10 +13,26 @@ function Recomendation() {
   const [selectedFlight, setSelectedFlight] = useState(null);
 
   useEffect(() => {
+    const checkWorkerService = async () => {
+      try {
+        const response = await axios.get(
+          "https://flightsbooking.me/heartbeat",
+        );
+        const { status } = response.data;
+        if (data == true) {
+          console.log("Worker service is running");
+        }
+        else {
+          console.log("Worker service is not running");
+        }
+      } catch (error) {
+        console.error("Error checking worker service", error);
+      }
+    };
     const getRecomendedFlights = async () => {
       try {
         const response = await axios.get(
-          `https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/recommendation/${user.email}`,
+          `flightsbooking.me/recommendation/${user.email}`,
         );
         setRecommendations(response.data.recommendations);
         setLoading(false);
@@ -27,7 +43,7 @@ function Recomendation() {
       }
     };
 
-    if (user?.email && loading) {
+    if (user?.email && loading && checkWorkerService()) {
       getRecomendedFlights();
     }
   }, [user, loading]);
