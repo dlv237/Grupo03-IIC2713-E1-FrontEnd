@@ -21,6 +21,7 @@ const Checkout = () => {
           `https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/flights/${flightId}`
         );
         setFlightDetails(flightResponse.data);
+        console.log('Flight details:', flightResponse.data);
       } catch (error) {
         console.error("Error fetching transaction:", error);
       }
@@ -43,7 +44,7 @@ const Checkout = () => {
 
           const pdfResponse = await axios.post("https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/reciept-dev-createPDF", {
             usuario: transaction.email,
-            vuelo: `${flightDetails.departure_airport.name} - ${flightDetails.arrival_airport.name}`,
+            vuelo: `${flightDetails.departure_airport.id} - ${flightDetails.arrival_airport.id}`,
             precio: transaction.amount
           });
 
