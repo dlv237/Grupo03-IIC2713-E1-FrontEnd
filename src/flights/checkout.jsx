@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import queryString from "query-string";
-import { sendEmail } from "./email";
-import { useAuth0 } from "@auth0/auth0-react";
 
 const Checkout = () => {
   const [transaction, setTransaction] = useState(null);
-  
+
   useEffect(() => {
     const fetchTransaction = async () => {
       try {
@@ -24,19 +22,36 @@ const Checkout = () => {
   }, []);
 
   useEffect(() => {
-    const { user } = useAuth0();
-
     const postTransaction = async () => {
       try {
         if (transaction && transaction.status === "AUTHORIZED") {
-            const data = {
-                email: user.email,
-                flights: id,
-                total_tickets_bought: ticketCount,
-                ip_flight: ipResponse.data.ip,
+          const data = {
+            email: transaction.email,
+            flights: transaction.flightId,
+            total_tickets_bought: transaction.total_tickets_bought,
+            ip_flight: transaction.ip_flight,
+          };
+          await axios.post("https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/buy", data);
+          const serviceId = 'service_n7axnzr';
+            const templateId = 'template_ub1jyen';
+            const publicKey = 'UveU5M9FMZjRUpumI';
+
+            const data2 = {
+                service_id: serviceId,
+                template_id: templateId,
+                user_id: publicKey,
+                template_params: {
+                to_email: transaction.email,
+                message: 'Transacción realizada exitosamente. Muchas gracias!',
+                }
             };
-            await axios.post("https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/buy", data);
-            sendEmail(user.email);
+
+            try {
+                const res = await axios.post("https://api.emailjs.com/api/v1.0/email/send", data2);
+                console.log('Email sent successfully:', res.data);
+            } catch (error) {
+                console.error('Failed to send email:', error);
+            }
         }
       } catch (error) {
         console.error("Error posting transaction:", error);
