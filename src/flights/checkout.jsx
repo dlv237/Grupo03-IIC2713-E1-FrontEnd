@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import queryString from "query-string";
+import "./checkout.css";
 
 const Checkout = () => {
   const [transaction, setTransaction] = useState(null);
@@ -88,23 +89,25 @@ const Checkout = () => {
   }
 
   return (
-    <div>
-      <h1>Checkout</h1>
-      <p>Email: {transaction.email}</p>
-      <p>Amount: {transaction.amount}</p>
-      <p>Status: {transaction.status}</p>
-      {pdfUrl && (
-        <div>
-          <a href={pdfUrl} target="_blank" rel="noopener noreferrer">Download Receipt PDF</a>
-        </div>
-      )}
-      {flightDetails && flightDetails.length > 0 && (
-        <div>
-          <h2>Flight Details</h2>
-          <p>Departure: {flightDetails[0].departure_airport.name}</p>
-          <p>Arrival: {flightDetails[0].arrival_airport.name}</p>
-        </div>
-      )}
+    <div className="checkout-container">
+      <div className="checkout-content">
+        <h1>Checkout</h1>
+        <p><span>Email:</span> {transaction.email}</p>
+        <p><span>Amount:</span> {transaction.amount}</p>
+        <p><span>Status:</span> {transaction.status}</p>
+        {pdfUrl && (
+          <div>
+            <a href={pdfUrl} target="_blank" rel="noopener noreferrer">Download Receipt PDF</a>
+          </div>
+        )}
+        {flightDetails && flightDetails.length > 0 && (
+          <div className="flight-details">
+            <h2>Flight Details</h2>
+            <p><span>Departure:</span> {flightDetails[0].departure_airport.name}</p>
+            <p><span>Arrival:</span> {flightDetails[0].arrival_airport.name}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
