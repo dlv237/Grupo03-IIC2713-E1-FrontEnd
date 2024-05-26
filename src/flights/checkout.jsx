@@ -55,7 +55,7 @@ const Checkout = () => {
           const serviceId = 'service_n7axnzr';
           const templateId = 'template_ub1jyen';
           const publicKey = 'UveU5M9FMZjRUpumI';
-          const emailMessage = `Transacción realizada exitosamente. Muchas gracias! Puedes descargar tu recibo <a href="${pdfUrl}">aquí</a>.`;
+          const emailMessage = `Transacción realizada exitosamente. Muchas gracias! Puedes descargar tu recibo aqui: ${pdfUrl}`;
           const data2 = {
             service_id: serviceId,
             template_id: templateId,
