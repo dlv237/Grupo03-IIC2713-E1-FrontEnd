@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import queryString from "query-string";
+import { sendEmail } from "./EmailRestAPI";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Checkout = () => {
   const [transaction, setTransaction] = useState(null);
+  const { user } = useAuth0();
 
   useEffect(() => {
     const fetchTransaction = async () => {
@@ -25,6 +28,7 @@ const Checkout = () => {
     const postTransaction = async () => {
       try {
         if (transaction && transaction.status === "AUTHORIZED") {
+            sendEmail();
           const data = {
             email: user.email,
             flights: id,
