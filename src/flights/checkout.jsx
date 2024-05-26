@@ -20,10 +20,9 @@ const Checkout = () => {
         const flightResponse = await axios.get(
           `https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/flights/${flightId}`
         );
-        setFlightDetails(flightResponse.data.flight.flights);
-        console.log('Flight details:', flightResponse.data.flight.flights);
-        console.log('Flight departure:', flightResponse.data.flight.flights[0].departure_airport.id);
-        console.log('Flight arrival:', flightResponse.data.flight.flights[0].arrival_airport.id);
+        if (flightResponse.data && flightResponse.data.flight && flightResponse.data.flight.flights) {
+          setFlightDetails(flightResponse.data.flight.flights);
+        }
       } catch (error) {
         console.error("Error fetching transaction:", error);
       }
@@ -35,7 +34,7 @@ const Checkout = () => {
   useEffect(() => {
     const postTransaction = async () => {
       try {
-        if (transaction && transaction.status === "AUTHORIZED" && flightDetails) {
+        if (transaction && transaction.status === "AUTHORIZED" && flightDetails && flightDetails.length > 0) {
           const data = {
             email: transaction.email,
             flights: transaction.flightId,
@@ -43,14 +42,12 @@ const Checkout = () => {
             ip_flight: transaction.ip_flight,
           };
           await axios.post("https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/buy", data);
-          console.log(flightDetails);
+
           const pdfResponse = await axios.post("https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/reciept-dev-createPDF", {
             usuario: transaction.email,
-            vuelo: `${flightDetails[0].departure_airport.id} - ${flightDetails[0].arrival_airport.id}`,
+            vuelo: `${flightDetails[0].departure_airport.name} - ${flightDetails[0].arrival_airport.name}`,
             precio: transaction.amount
           });
-
-          console.log('PDF created:', pdfResponse.data);
 
           const pdfUrl = pdfResponse.data.url;
           setPdfUrl(pdfUrl);
@@ -101,11 +98,11 @@ const Checkout = () => {
           <a href={pdfUrl} target="_blank" rel="noopener noreferrer">Download Receipt PDF</a>
         </div>
       )}
-      {flightDetails && (
+      {flightDetails && flightDetails.length > 0 && (
         <div>
           <h2>Flight Details</h2>
-          <p>Departure: {flightDetails.departure_airport.name}</p>
-          <p>Arrival: {flightDetails.arrival_airport.name}</p>
+          <p>Departure: {flightDetails[0].departure_airport.name}</p>
+          <p>Arrival: {flightDetails[0].arrival_airport.name}</p>
         </div>
       )}
     </div>
