@@ -21,7 +21,7 @@ const Flights = () => {
     const fetchFlights = async () => {
       try {
         const response = await fetch(
-          `https://flightsbooking.me/flights${location.search}`,
+          `https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/flights${location.search}`,
         );
         const data = await response.json();
         setFlights(data);

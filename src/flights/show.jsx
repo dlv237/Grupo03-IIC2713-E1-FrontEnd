@@ -19,9 +19,7 @@ const Flight = () => {
   useEffect(() => {
     const fetchFlight = async () => {
       try {
-        const response = await fetch(
-          `https://flightsbooking.me/flights/${id}`,
-        );
+        const response = await fetch(`https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/flights/${id}`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -38,7 +36,6 @@ const Flight = () => {
 
   const handleBuyFlight = async () => {
     try {
-      
       const ipResponse = await axios.get(
         `https://ipinfo.io/json?token=9704d049333821`,
       );
@@ -51,10 +48,10 @@ const Flight = () => {
         ip_flight: ipResponse.data.ip,
       };
 
-      console.log("Transaction data:", transaction_data)
+      console.log("Transaction data:", transaction_data);
 
       const response_webpay = await axios.post(
-        "https://flightsbooking.me/transactions",
+        "https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/transactions",
         transaction_data,
         {
           headers: {
@@ -66,25 +63,8 @@ const Flight = () => {
       const webpay_url = response_webpay.data.url;
       const token = response_webpay.data.token;
 
-      window.location.href = webpay_url +"?token_ws="+ token;
+      window.location.href = webpay_url + "?token_ws=" + token;
 
-      const data = {
-        email: user.email,
-        flights: id,
-        total_tickets_bought: ticketCount,
-        ip_flight: ipResponse.data.ip,
-      };
-      const url = `https://flightsbooking.me/buy`;
-
-      const response = await axios.post(url, data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      console.log("Server response:", response.data);
-      window.location.href = "/my_flights";
-      
     } catch (error) {
       console.error("Error buying flight:", error);
     }

@@ -8,7 +8,7 @@ const UserFlights = () => {
 
   useEffect(() => {
     const fetchPurchases = async () => {
-      const url = `flightsbooking.me/purchases/${user.email}`;
+      const url = `https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/purchases/${user.email}`;
 
       try {
         const response = await fetch(url, {
@@ -44,7 +44,7 @@ const UserFlights = () => {
   const getFlightById = async (flightId) => {
     try {
       const response = await axios.get(
-        `https://flightsbooking.me/flights/${flightId}`,
+        `https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/flights/${flightId}`,
       );
       return response.data;
     } catch (error) {

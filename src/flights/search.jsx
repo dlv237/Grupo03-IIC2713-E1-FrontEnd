@@ -19,15 +19,12 @@ const Search = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      axios.post(
-        "https://flightsbooking.me/users",
-        {
-          name: "None",
-          email: user.email,
-          password: "None",
-          phone: "None",
-        },
-      );
+      axios.post("https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/users", {
+        name: "None",
+        email: user.email,
+        password: "None",
+        phone: "None",
+      });
       console.log("User created");
     }
   }, [isAuthenticated, user]);
