@@ -43,7 +43,7 @@ const Checkout = () => {
             ip_flight: transaction.ip_flight,
           };
           await axios.post("https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/buy", data);
-
+          console.log(flightDetails);
           const pdfResponse = await axios.post("https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/reciept-dev-createPDF", {
             usuario: transaction.email,
             vuelo: `${flightDetails[0].departure_airport.id} - ${flightDetails[0].arrival_airport.id}`,
