@@ -20,7 +20,9 @@ function Recomendation() {
         `https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/recommendation/${user.email}`,
       );
       const data = response.data;
-      setRecommendations(Array.isArray(data.recommendations) ? data.recommendations : []);
+      setRecommendations(
+        Array.isArray(data.recommendations) ? data.recommendations : [],
+      );
       setTimes(Array.isArray(data.times) ? data.times : []);
       setLoading(false);
       console.log("Fetched recommendations:", data);
@@ -44,7 +46,7 @@ function Recomendation() {
 
       await axios.post(
         `https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/recommendation/update/${user.email}`,
-        data
+        data,
       );
       console.log("Updated recommendations with flightId:", flightId);
     } catch (error) {
@@ -68,7 +70,11 @@ function Recomendation() {
 
   const handleUpdateClick = async () => {
     console.log("Clicked update button");
-    if (recommendations.length > 0 && recommendations[currentPage] && recommendations[currentPage][0]) {
+    if (
+      recommendations.length > 0 &&
+      recommendations[currentPage] &&
+      recommendations[currentPage][0]
+    ) {
       const flightId = recommendations[currentPage][0]._id;
       setLoading(true);
       console.log("Updating recommendations for flightId:", flightId);
@@ -81,7 +87,8 @@ function Recomendation() {
     }
   };
 
-  const currentFlights = recommendations.length > 0 ? recommendations[currentPage] || [] : [];
+  const currentFlights =
+    recommendations.length > 0 ? recommendations[currentPage] || [] : [];
   const currentTime = times.length > 0 ? times[currentPage] || "" : "";
 
   if (loading) {
@@ -94,16 +101,38 @@ function Recomendation() {
         <h1 className="texto-titulo-recomendaciones">Recomendaciones:</h1>
         {recommendations.length > 0 && currentFlights.length > 0 && (
           <div>
-            <h2 className="recommendation-subtitle">Vuelo utilizado para la recomendación:</h2>
-            <div className="flight-cell" onClick={() => handleFlightClick(currentFlights[0])}>
-              <img className="recommendation-image" src={currentFlights[0].airlineLogo} alt="Airline Logo" />
+            <h2 className="recommendation-subtitle">
+              Vuelo utilizado para la recomendación:
+            </h2>
+            <div
+              className="flight-cell"
+              onClick={() => handleFlightClick(currentFlights[0])}
+            >
+              <img
+                className="recommendation-image"
+                src={currentFlights[0].airlineLogo}
+                alt="Airline Logo"
+              />
               <div>
-                <p className="recommendation-text">Airline: {currentFlights[0].flights[0].airline}</p>
-                <p className="recommendation-text">Departure: {currentFlights[0].flights[0].departure_airport.name}</p>
-                <p className="recommendation-text">Arrival: {currentFlights[0].flights[0].arrival_airport.name}</p>
-                <p className="recommendation-text">Price: {currentFlights[0].price} {currentFlights[0].currency}</p>
-                <p className="recommendation-text">Seats Available: {currentFlights[0].seats_available}</p>
-                <p className="recommendation-text">Hora de la recomendacion: {currentTime}</p>
+                <p className="recommendation-text">
+                  Airline: {currentFlights[0].flights[0].airline}
+                </p>
+                <p className="recommendation-text">
+                  Departure:{" "}
+                  {currentFlights[0].flights[0].departure_airport.name}
+                </p>
+                <p className="recommendation-text">
+                  Arrival: {currentFlights[0].flights[0].arrival_airport.name}
+                </p>
+                <p className="recommendation-text">
+                  Price: {currentFlights[0].price} {currentFlights[0].currency}
+                </p>
+                <p className="recommendation-text">
+                  Seats Available: {currentFlights[0].seats_available}
+                </p>
+                <p className="recommendation-text">
+                  Hora de la recomendacion: {currentTime}
+                </p>
               </div>
               <Link to={`/flights/${currentFlights[0]._id}`}>
                 <Button simple>Reservar vuelo</Button>
@@ -115,17 +144,41 @@ function Recomendation() {
           <div>
             <div className="recommendation-header">
               <h2 className="recommendation-subtitle">Vuelos recomendados:</h2>
-              <Button className="recommendation-update-button" simple onClick={handleUpdateClick}>Actualizar recomendaciones</Button>
+              <Button
+                className="recommendation-update-button"
+                simple
+                onClick={handleUpdateClick}
+              >
+                Actualizar recomendaciones
+              </Button>
             </div>
             {currentFlights.slice(1).map((flight, index) => (
-              <div className="flight-cell" key={index} onClick={() => handleFlightClick(flight)}>
-                <img className="recommendation-image" src={flight.airlineLogo} alt="Airline Logo" />
+              <div
+                className="flight-cell"
+                key={index}
+                onClick={() => handleFlightClick(flight)}
+              >
+                <img
+                  className="recommendation-image"
+                  src={flight.airlineLogo}
+                  alt="Airline Logo"
+                />
                 <div>
-                  <p className="recommendation-text">Airline: {flight.flights[0].airline}</p>
-                  <p className="recommendation-text">Departure: {flight.flights[0].departure_airport.name}</p>
-                  <p className="recommendation-text">Arrival: {flight.flights[0].arrival_airport.name}</p>
-                  <p className="recommendation-text">Price: {flight.price} {flight.currency}</p>
-                  <p className="recommendation-text">Seats Available: {flight.seats_available}</p>
+                  <p className="recommendation-text">
+                    Airline: {flight.flights[0].airline}
+                  </p>
+                  <p className="recommendation-text">
+                    Departure: {flight.flights[0].departure_airport.name}
+                  </p>
+                  <p className="recommendation-text">
+                    Arrival: {flight.flights[0].arrival_airport.name}
+                  </p>
+                  <p className="recommendation-text">
+                    Price: {flight.price} {flight.currency}
+                  </p>
+                  <p className="recommendation-text">
+                    Seats Available: {flight.seats_available}
+                  </p>
                 </div>
                 <Link to={`/flights/${flight._id}`}>
                   <Button simple>Reservar vuelo</Button>
@@ -149,14 +202,32 @@ function Recomendation() {
           <div className="flight-details">
             <h2 className="recommendation-subtitle">Detalles del vuelo</h2>
             <div className="flight-detail-cell">
-              <img className="recommendation-image-details" src={selectedFlight.airlineLogo} alt="Airline Logo" />
-              <p className="recommendation-text">Airline: {selectedFlight.flights[0].airline}</p>
-              <p className="recommendation-text">Airplane: {selectedFlight.flights[0].airplane}</p>
-              <p className="recommendation-text">Departure: {selectedFlight.flights[0].departure_airport.name}</p>
-              <p className="recommendation-text">Arrival: {selectedFlight.flights[0].arrival_airport.name}</p>
-              <p className="recommendation-text">Price: {selectedFlight.price} {selectedFlight.currency}</p>
-              <p className="recommendation-text">Seats Available: {selectedFlight.seats_available}</p>
-              <p className="recommendation-text">Carbon Emission: {selectedFlight.carbonEmission.this_flight}</p>
+              <img
+                className="recommendation-image-details"
+                src={selectedFlight.airlineLogo}
+                alt="Airline Logo"
+              />
+              <p className="recommendation-text">
+                Airline: {selectedFlight.flights[0].airline}
+              </p>
+              <p className="recommendation-text">
+                Airplane: {selectedFlight.flights[0].airplane}
+              </p>
+              <p className="recommendation-text">
+                Departure: {selectedFlight.flights[0].departure_airport.name}
+              </p>
+              <p className="recommendation-text">
+                Arrival: {selectedFlight.flights[0].arrival_airport.name}
+              </p>
+              <p className="recommendation-text">
+                Price: {selectedFlight.price} {selectedFlight.currency}
+              </p>
+              <p className="recommendation-text">
+                Seats Available: {selectedFlight.seats_available}
+              </p>
+              <p className="recommendation-text">
+                Carbon Emission: {selectedFlight.carbonEmission.this_flight}
+              </p>
             </div>
           </div>
         )}
