@@ -5,6 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import Button from "../common/button";
 import LoadingSpinner from "../common/spinner";
+import { format } from "date-fns";
 
 function Recomendation() {
   const { user } = useAuth0();
@@ -23,7 +24,7 @@ function Recomendation() {
       setRecommendations(
         Array.isArray(data.recommendations) ? data.recommendations : [],
       );
-      setTimes(Array.isArray(data.times) ? data.times : []);
+      setTimes(Array.isArray(data.time) ? data.time : []); // Corrige aquí para usar 'time'
       setLoading(false);
       console.log("Fetched recommendations:", data);
     } catch (error) {
@@ -91,6 +92,10 @@ function Recomendation() {
     recommendations.length > 0 ? recommendations[currentPage] || [] : [];
   const currentTime = times.length > 0 ? times[currentPage] || "" : "";
 
+  console.log("Current page:", currentPage);
+  console.log("Times array:", times);
+  console.log("Current time:", currentTime);
+
   if (loading) {
     return <LoadingSpinner />;
   }
@@ -131,7 +136,8 @@ function Recomendation() {
                   Seats Available: {currentFlights[0].seats_available}
                 </p>
                 <p className="recommendation-text">
-                  Hora de la recomendacion: {currentTime}
+                  Hora de la recomendación:{" "}
+                  {currentTime ? format(new Date(currentTime), "dd/MM/yyyy HH:mm:ss") : ""}
                 </p>
               </div>
               <Link to={`/flights/${currentFlights[0]._id}`}>
