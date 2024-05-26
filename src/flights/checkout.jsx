@@ -5,7 +5,8 @@ import { sendEmail } from "./email";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Checkout = () => {
-    
+  const [transaction, setTransaction] = useState(null);
+  
   useEffect(() => {
     const fetchTransaction = async () => {
       try {
