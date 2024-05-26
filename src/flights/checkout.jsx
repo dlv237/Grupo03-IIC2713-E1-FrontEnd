@@ -22,9 +22,8 @@ const Checkout = () => {
         );
         setFlightDetails(flightResponse.data.flight.flights);
         console.log('Flight details:', flightResponse.data.flight.flights);
-        console.log(flightDetails);
-        console.log(flightDetails.data[0].departure_airport.id);
-        console.log(flightDetails.data[0].arrival_airport.id);
+        console.log('Flight departure:', flightResponse.data.flight.flights[0].departure_airport.id);
+        console.log('Flight arrival:', flightResponse.data.flight.flights[0].arrival_airport.id);
       } catch (error) {
         console.error("Error fetching transaction:", error);
       }
