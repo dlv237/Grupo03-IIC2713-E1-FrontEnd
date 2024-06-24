@@ -36,6 +36,11 @@ function Navbar() {
                   Mis Vuelos
                 </Link>
               </li>
+              <li className="navbar-li">
+                <Link to="/auction_flights" className="navbar-a">
+                  Mis Vuelos
+                </Link>
+              </li>
               {isAdmin && (
               <li className="navbar-li">
                 <Link to="/settings" className="navbar-a">

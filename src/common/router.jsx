@@ -12,6 +12,7 @@ import Recomendation from "../flights/recomendations";
 import Checkout from "../flights/checkout";
 import Email from "../flights/email"
 import Settings from "../adminpages/settings";
+import AdminFlights from "../adminpages/adminflights";
 
 const ProtectedComponent = ({ component: Component }) => {
   const { isAuthenticated } = useAuth0();
@@ -28,6 +29,10 @@ const PageRoutes = () => {
       <Route
         path="/flights"
         element={<ProtectedComponent component={Flights} />}
+      />
+      <Route
+        path="/admin/flights"
+        element={<ProtectedComponent component={AdminFlights} />}
       />
       <Route
         path="/flights/:id"
