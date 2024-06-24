@@ -11,6 +11,7 @@ import VistaCompras from "../flights/userBuys";
 import Recomendation from "../flights/recomendations";
 import Checkout from "../flights/checkout";
 import Email from "../flights/email"
+import Settings from "../adminpages/settings";
 
 const ProtectedComponent = ({ component: Component }) => {
   const { isAuthenticated } = useAuth0();
@@ -52,6 +53,7 @@ const PageRoutes = () => {
         path="/flights/email"
         element={<ProtectedComponent component={Email} />}
       />
+      <Route path="/settings" element={<Settings />} />
     </Routes>
   );
 };
