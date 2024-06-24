@@ -1,0 +1,50 @@
+.settings-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+  
+.settings-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 1);
+    width: 400px;
+    text-align: center;
+}
+  
+.settings-form {
+    margin-bottom: 20px;
+}
+  
+.settings-container h1,
+.settings-container h2 {
+    margin: 0 0 20px 0;
+}
+  
+.settings-container input {
+    margin-right: 10px;
+    padding: 10px;
+    width: calc(100% - 20px);
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: "League Spartan", sans-serif;
+}
+
+.settings-title {
+	color: #000053;
+	text-align: center;
+	font-size: 2.5em;
+	font-family: "League Spartan", sans-serif;
+	padding-top: 10px;
+}
+
+.settings-category {
+	color: #000053;
+	text-align: center;
+	font-size: 1.8em;
+	font-family: "League Spartan", sans-serif;
+	padding-top: 20px;
+}

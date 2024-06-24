@@ -5,7 +5,10 @@ import LogoutButton from "./LogoutButton";
 import { useAuth0 } from "@auth0/auth0-react";
 
 function Navbar() {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
+  const isAdmin = user?.admin || false;
+
+  console.log("User:", user);
 
   return (
     <ul className="navbar">
@@ -33,6 +36,13 @@ function Navbar() {
                   Mis Vuelos
                 </Link>
               </li>
+              {isAdmin && (
+              <li className="navbar-li">
+                <Link to="/settings" className="navbar-a">
+                  Configuraciones
+                </Link>
+              </li>
+            )}
               <li className="navbar-li">
                 <LogoutButton className="login-button"></LogoutButton>
               </li>
