@@ -3,6 +3,7 @@ import Button from "../common/button.jsx";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
+import "./search.css";
 
 const Search = () => {
   const [input1, setInput1] = useState("");
@@ -61,9 +62,14 @@ const Search = () => {
           value={input3}
           onChange={(e) => setInput3(e.target.value)}
         />
-        <Link to={`/flights?${params.toString()}`}>
-          <Button simple>Buscar vuelos</Button>
-        </Link>
+        <div className="search-buttons-container">
+          <Link to={`/flights?${params.toString()}`}>
+            <Button simple>Buscar vuelos</Button>
+          </Link>
+          <Link to={`/flights?${params.toString()}`}>
+            <Button simple>Reservar vuelos</Button>
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -39,11 +39,11 @@ function Settings() {
             step="0.01"
           />
           <Button onClick={saveDiscount}>Guardar</Button>
+        </div> 
+        <div className="settings-container-addadmin">
+          <h2 className="settings-category">Subastas</h2>
+            <Button>Revisar subastas</Button>
         </div>
-        {/* <div className="settings-container-addadmin">
-          <h2 className="settings-category">Registrar administrador nuevo</h2>
-           revisar si lo vamos a implementar o no 
-        </div> */}
       </div>
     </div>
   );
