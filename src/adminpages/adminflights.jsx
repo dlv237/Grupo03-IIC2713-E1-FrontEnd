@@ -9,7 +9,7 @@ const AdminFlights = () => {
 
   useEffect(() => {
     const fetchAdminFlights = async () => {
-      const url = `http://localhost:3000/admin/flights/${user.email}`;
+      const url = `http://localhost:3000/seeflights`;
 
       try {
         const response = await fetch(url, {
