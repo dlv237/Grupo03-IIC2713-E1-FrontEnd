@@ -92,11 +92,6 @@ const Flight = () => {
 
     } catch (error) {
       console.error("Error buying flight:", error);
-      alert(
-        `Error al realizar la reserva: ${
-          error.response?.data?.error || "Error desconocido"
-        }`
-      );
     }
   }
 
@@ -250,9 +245,8 @@ const Flight = () => {
                 </span>
               </div>
             </div>
-            <button onClick={handleAdminBuyFlight}>Reservar Vuelo</button>
+            <button onClick={handleAdminBuyFlight}>Reservar Vueloss</button>
             {!canBuyTickets && <p>No quedan vuelos disponibles</p>}
-            {error && <p>Error: {error}</p>}
 
 
 
