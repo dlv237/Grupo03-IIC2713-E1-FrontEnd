@@ -71,29 +71,29 @@ const AdminFlights = () => {
           {flights.map((flight, index) => (
             <div key={index} className="flight-info">
               <h2>
-                {flight.departure_airport.name} ➔ {flight.arrival_airport.name}
+                {flight.flights[0].departure_airport.name} ➔ {flight.flights[0].arrival_airport.name}
               </h2>
               <p>
                 <strong>Hora de salida:</strong>{" "}
-                {new Date(flight.departure_time).toLocaleTimeString("es-ES")}
+                {new Date(flight.flights[0].departure_airport.time).toLocaleTimeString("es-ES")}
               </p>
               <p>
                 <strong>Hora de llegada:</strong>{" "}
-                {new Date(flight.arrival_time).toLocaleTimeString("es-ES")}
+                {new Date(flight.flights[0].arrival_airport.time).toLocaleTimeString("es-ES")}
               </p>
               <p>
-                <strong>Precio:</strong>{" "}
+                <strong>Precio:</strong>
                 {flight.price.toLocaleString("es-CL", {
                   style: "currency",
                   currency: "CLP",
-                })}{" "}
+                }) }
                 CLP
               </p>
               <p>
                 <strong>Asientos disponibles:</strong>{" "}
                 {flight.seats_available}
               </p>
-              <button onClick={() => handleAuctionFlight(flight.auction._id)}>
+              <button onClick={() => handleAuctionFlight(flight.auction.auction_id)}>
                 Publicar Subasta
               </button>
             </div>
