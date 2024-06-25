@@ -1,0 +1,49 @@
+/* adminauctions.css */
+
+.auctions-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin-top: 50px;
+}
+  
+.auctions-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+    width: 90%;
+    max-width: 600px;
+    margin: 20px;
+}
+  
+.auctions-page-title {
+	color: #000053;
+	text-align: center;
+	font-size: 2.5em;
+	font-family: "League Spartan", sans-serif;
+	padding-top: 20px;
+}
+  
+.auction-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+  
+.auction-title {
+    color: #000053;
+	text-align: left;
+	font-size: 1.8em;
+	font-family: "League Spartan", sans-serif;
+	padding-top: 10px;
+}
+  
+.auction-text {
+	color: #000053;
+	text-align: left;
+	font-size: 1em;
+	font-family: "League Spartan", sans-serif;
+	padding-top: 5px;
+}
+  
