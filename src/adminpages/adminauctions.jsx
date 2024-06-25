@@ -3,7 +3,7 @@ import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./adminauctions.css";
 import Button from "../common/button.jsx";
-import { Link } from "react-router-dom";
+
 
 const AdminAuctions = () => {
   const [auctions, setAuctions] = useState([]);
@@ -14,7 +14,7 @@ const AdminAuctions = () => {
     const fetchAdminAuction = async () => {
       try {
         const response = await axios.get(
-          `https://flightsbooking.me/admin/auctions`,
+          `http://localhost:3000/admin/auction`,
           {
             headers: {
               "Content-Type": "application/json",
