@@ -1,0 +1,47 @@
+.btnfb {
+    width: 180px;
+    height: 43px;
+    border: none;
+    transition: all 0.5s ease-in-out;
+    font-size: 18px;
+    font-family: "League Spartan";
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    background: #040f16;
+    color: #f5f5f5;
+  }
+  
+  .btnfb:hover {
+    box-shadow: 0 0 20px 0px #2e2e2e3a;
+  }
+  
+  .btnfb .text-fb {
+    transform: translateX(10px);
+    margin-top: 5px;
+    transition: all 0.5s ease-in-out;
+  }
+  
+  .btnfb:hover .text-fb {
+    transition: all 0.5s;
+    transform: translateX(10px) scale(1.05);
+  }
+  
+  .btnfb:focus {
+    outline: none;
+  }
+  
+
+  .btnfb-link {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .btnfb-link:link,
+  .btnfb-link:visited,
+  .btnfb-link:hover,
+  .btnfb-link:active {
+    text-decoration: none;
+    color: inherit;
+  }
+  

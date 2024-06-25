@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
+import "./userbuys.css";
+
+
 const VistaCompras = () => {
   const [data, setData] = useState(null);
   const [flights, setFlights] = useState(null);
@@ -49,14 +52,18 @@ const VistaCompras = () => {
           console.log("Flight:", flight);
           return (
             <div key={index} className="flight-card">
-              <div className="section-1">
+              <div className="section-1-v">
                 <div>
-                  <h2 style={{ marginRight: "20px", marginLeft: "40px" }}>
-                    {innerFlight.departure_airport.id} ➔{" "}
-                    {innerFlight.arrival_airport.id}
-                  </h2>
-                  <p>Fecha de salida: {fecha.toLocaleDateString()}</p>
                   <h1>Datos de la compra:</h1>
+                  <div className="nombrevuelo">
+                    <h2 style={{ marginRight: "20px", marginLeft: "40px" }}>
+                      {innerFlight.departure_airport.id} ➔{" "}
+                      {innerFlight.arrival_airport.id}
+                    </h2>
+                    <p>Fecha de salida: {fecha.toLocaleDateString()}</p>
+                  </div>
+                </div>
+                <div className="detallescompra">
                   <p>Total Tickets: {item.total_tickets}</p>
                   <p>Flight ID: {flight._id}</p>
                   <p>
@@ -66,7 +73,7 @@ const VistaCompras = () => {
                   <Link to={`/flights/${flight._id}`}>
                     Ver detalles del vuelo
                   </Link>
-                </div>
+                </div>  
               </div>
             </div>
           );
