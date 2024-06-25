@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./index.css";
 import LocationInfo from "../common/LocationInfo.jsx";
 import axios from "axios";
@@ -11,6 +12,7 @@ const Flight = () => {
   const [showLocationInfo, setShowLocationInfo] = useState(false);
   const { user } = useAuth0();
   const [ticketCount, setTicketCount] = useState(1);
+  const navigate = useNavigate();
 
   const handleTicketCountChange = (event) => {
     setTicketCount(event.target.value);
@@ -69,6 +71,34 @@ const Flight = () => {
       console.error("Error buying flight:", error);
     }
   };
+
+  const handleAdminBuyFlight = async () => {
+    try{
+      const transaction_data = {
+        email: user.email,
+        flightId: id,
+        total_tickets_bought: ticketCount,
+      };
+
+      console.log("data:", transaction_data);
+
+      const response = await axios.post("localhost:3000/admin-buy-ticket", transaction_data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      
+      navigate("/admin/flights");
+
+    } catch (error) {
+      console.error("Error buying flight:", error);
+      alert(
+        `Error al realizar la reserva: ${
+          error.response?.data?.error || "Error desconocido"
+        }`
+      );
+    }
+  }
 
   if (!flight || !flight.flights || flight.flights.length === 0) {
     return null;
@@ -220,7 +250,9 @@ const Flight = () => {
                 </span>
               </div>
             </div>
+            <button onClick={handleAdminBuyFlight}>Reservar Vuelo</button>
             {!canBuyTickets && <p>No quedan vuelos disponibles</p>}
+            {error && <p>Error: {error}</p>}
 
 
 

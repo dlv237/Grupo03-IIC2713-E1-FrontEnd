@@ -13,6 +13,8 @@ import Checkout from "../flights/checkout";
 import Email from "../flights/email"
 import Settings from "../adminpages/settings";
 import AdminFlights from "../adminpages/adminflights";
+import AdminAuctions from "../adminpages/adminauctions";
+
 
 const ProtectedComponent = ({ component: Component }) => {
   const { isAuthenticated } = useAuth0();
@@ -33,6 +35,10 @@ const PageRoutes = () => {
       <Route
         path="/admin/flights"
         element={<ProtectedComponent component={AdminFlights} />}
+      />
+      <Route
+        path="/admin/auctions"
+        element={<ProtectedComponent component={AdminAuctions} />}
       />
       <Route
         path="/flights/:id"
