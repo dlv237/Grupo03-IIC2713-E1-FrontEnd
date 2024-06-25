@@ -46,13 +46,11 @@ function Navbar() {
                   Auctions
                 </Link>
               </li>
-              {isAdmin && (
               <li className="navbar-li">
                 <Link to="/settings" className="navbar-a">
                   Configuraciones
                 </Link>
               </li>
-            )}
               <li className="navbar-li">
                 <LogoutButton className="login-button"></LogoutButton>
               </li>

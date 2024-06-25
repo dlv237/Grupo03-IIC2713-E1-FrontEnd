@@ -82,7 +82,7 @@ const Flight = () => {
 
       console.log("data:", transaction_data);
 
-      const response = await axios.post("localhost:3000/admin-buy-ticket", transaction_data, {
+      const response = await axios.post("https://flightsbooking.me/admin-buy-ticket", transaction_data, {
         headers: {
           "Content-Type": "application/json",
         },
