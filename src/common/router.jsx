@@ -14,6 +14,7 @@ import Email from "../flights/email"
 import Settings from "../adminpages/settings";
 import AdminFlights from "../adminpages/adminflights";
 import AdminAuctions from "../adminpages/adminauctions";
+import AuctionsWithProposals from "../adminpages/auctionproposal";
 
 
 const ProtectedComponent = ({ component: Component }) => {
@@ -36,6 +37,10 @@ const PageRoutes = () => {
       <Route
         path="/admin/auctions"
         element={<ProtectedComponent component={AdminAuctions} />}
+      />
+      <Route
+        path="/admin/proposal"
+        element={<ProtectedComponent component={AuctionsWithProposals} />}
       />
       <Route
         path="/flights/:id"
