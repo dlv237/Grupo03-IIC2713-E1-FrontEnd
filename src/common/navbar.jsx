@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 import { useAuth0 } from "@auth0/auth0-react";
+import FlightsBookingButton from "./FlightsBookingButton";
+import ButtonBuscarVuelos from "./ButtonBuscarVuelos";
+import ButtonRecomendaciones from "./ButtonRecomendaciones";
+import ButtonMisVuelos from "./ButtonMisVuelos";
 
 function Navbar() {
   const { isAuthenticated, user } = useAuth0();
@@ -13,28 +17,20 @@ function Navbar() {
   return (
     <ul className="navbar">
       <li className="navbar-li">
-        <Link to="/" className="navbar-a">
-          FlightsBooking
-        </Link>
+        <FlightsBookingButton className="navbar-a flightsbooking-button"></FlightsBookingButton>
       </li>
       <li className="navbar-li">
-        <Link to="/search" className="navbar-a">
-          Buscar Vuelos
-        </Link>
+        <ButtonBuscarVuelos className="navbar-a flightsbooking-button"></ButtonBuscarVuelos>
       </li>
       <div className="right-container">
         <li className="navbar-li">
           {isAuthenticated ? (
             <>
               <li className="navbar-li">
-                <Link to="/recomendations" className="navbar-a">
-                  ¿No sabes a donde ir?
-                </Link>
+                <ButtonRecomendaciones className="navbar-a flightsbooking-button"></ButtonRecomendaciones>
               </li>
               <li className="navbar-li">
-                <Link to="/my_flights" className="navbar-a">
-                  Mis Vuelos
-                </Link>
+                <ButtonMisVuelos className="navbar-a flightsbooking-button"></ButtonMisVuelos>
               </li>
               {isAdmin && (
               <li className="navbar-li">

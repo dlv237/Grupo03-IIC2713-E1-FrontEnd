@@ -1,0 +1,26 @@
+.section-1-v {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    animation: fadeIn 2s ease forwards;
+}
+
+.detallescompra {
+    margin-left: 80px;
+}
+
+.nombrevuelo {
+    margin-left: 30px;
+}
+
+
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }

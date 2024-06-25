@@ -1,0 +1,49 @@
+.btnwb {
+    height: 42px;
+    border: none;
+    transition: all 0.5s ease-in-out;
+    font-size: 16px;
+    font-family: "League Spartan";
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    background: #f9fcff;
+    color: #000035;
+    padding: 20px;
+  }
+  
+  .btnwb:hover {
+    box-shadow: 0 0 20px 0px #2e2e2e3a;
+    background-color: #040f16;
+    transition: none;
+  }
+  
+  .btnwb .text-wb {
+    margin-top: 5px;
+    transition: all 0.5s ease-in-out;
+  }
+  
+  .btnwb:hover .text-wb {
+    color: #f5f5f5;
+    transform: scale(1.05);
+    transition: transform 0.5s;
+  }
+  
+  .btnwb:focus {
+    outline: none;
+  }
+  
+
+  .btnwb-link {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .btnwb-link:link,
+  .btnwb-link:visited,
+  .btnwb-link:hover,
+  .btnwb-link:active {
+    text-decoration: none;
+    color: inherit;
+  }
+  
