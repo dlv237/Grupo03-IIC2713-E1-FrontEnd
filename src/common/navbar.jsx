@@ -38,7 +38,7 @@ function Navbar() {
                 </Link>
               </li>
               <li className="navbar-li">
-                <Link to="/admin/flights" className="navbar-a">
+                <Link to="/admin-flights" className="navbar-a">
                   Auctions
                 </Link>
               </li>

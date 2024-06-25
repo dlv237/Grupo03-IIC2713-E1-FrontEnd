@@ -88,7 +88,7 @@ const Flight = () => {
         },
       });
       
-      navigate("/admin/flights");
+      navigate("/admin-flights");
 
     } catch (error) {
       console.error("Error buying flight:", error);
