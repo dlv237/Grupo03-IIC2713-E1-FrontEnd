@@ -33,8 +33,13 @@ function Navbar() {
                 <ButtonMisVuelos className="navbar-a flightsbooking-button"></ButtonMisVuelos>
               </li>
               <li className="navbar-li">
-                <Link to="/auction_flights" className="navbar-a">
-                  Mis Vuelos
+                <Link to="/admin/auctions" className="navbar-a">
+                  Ofertas de otros grupos
+                </Link>
+              </li>
+              <li className="navbar-li">
+                <Link to="/admin/flights" className="navbar-a">
+                  Auctions
                 </Link>
               </li>
               {isAdmin && (
