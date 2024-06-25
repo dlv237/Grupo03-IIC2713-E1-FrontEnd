@@ -1,49 +1,47 @@
 /* adminauctions.css */
 
+
 .auctions-page {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    min-height: 100vh;
-    margin-top: 50px;
-}
-  
-.auctions-container {
-    background-color: white;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
-    width: 90%;
-    max-width: 600px;
-    margin: 20px;
-}
+  }
   
-.auctions-page-title {
-	color: #000053;
-	text-align: center;
-	font-size: 2.5em;
-	font-family: "League Spartan", sans-serif;
-	padding-top: 20px;
-}
+  .auctions-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
   
-.auction-item {
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0;
-}
+  .auctions-column {
+    flex: 1;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
   
-.auction-title {
-    color: #000053;
-	text-align: left;
-	font-size: 1.8em;
-	font-family: "League Spartan", sans-serif;
-	padding-top: 10px;
-}
+  .auctions-column h2 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
   
-.auction-text {
-	color: #000053;
-	text-align: left;
-	font-size: 1em;
-	font-family: "League Spartan", sans-serif;
-	padding-top: 5px;
-}
+  .auction-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .auction-title {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+  }
+  
+  .auction-text {
+    margin: 2px 0;
+  }
   

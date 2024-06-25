@@ -38,6 +38,11 @@ function Navbar() {
                 </Link>
               </li>
               <li className="navbar-li">
+                <Link to="/admin/proposal" className="navbar-a">
+                  Propuestas
+                </Link>
+              </li>
+              <li className="navbar-li">
                 <Link to="/admin-flights" className="navbar-a">
                   Auctions
                 </Link>
