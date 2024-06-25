@@ -20,8 +20,7 @@ const AdminAuctions = () => {
             "Content-Type": "application/json",
           },
         });
-        const data = response.data;
-        setAuctions(data);
+        setAuctions(response.data);
       } catch (error) {
         setError(error.message);
       }
@@ -34,8 +33,7 @@ const AdminAuctions = () => {
             "Content-Type": "application/json",
           },
         });
-        const data = response.data;
-        setMyAuctions(data);
+        setMyAuctions(response.data);
       } catch (error) {
         setError(error.message);
       }
@@ -48,30 +46,44 @@ const AdminAuctions = () => {
   }, [user]);
 
   const createProposal = async () => {
-    (console.log("buttonn"))
+    console.log("Button clicked");
     if (!selectedAuction || !selectedMyAuction) {
       setError("Debe seleccionar una subasta de cada lista.");
       return;
     }
 
     try {
-      console.log("Intenando:", user.email)
-      const response = await axios.post(`https://flightsbooking.me/admin/auction_proposal`, {
-        userEmail: user.email,
-        auction_id: selectedAuction._id,
-        departure_airport: selectedMyAuction.departure_airport,
-        arrival_airport: selectedMyAuction.arrival_airport,
-        departure_time: selectedMyAuction.departure_time,
-        airline: selectedMyAuction.airline,
-        quantity: selectedMyAuction.quantity,
-      }, {
-        headers: {
-          "Content-Type": "application/json",
+      console.log("Attempting to create proposal with the following data:");
+      console.log("User Email:", user.email);
+      console.log("Auction ID:", selectedAuction._id);
+      console.log("Departure Airport:", selectedMyAuction.departure_airport);
+      console.log("Arrival Airport:", selectedMyAuction.arrival_airport);
+      console.log("Departure Time:", selectedMyAuction.departure_time);
+      console.log("Airline:", selectedMyAuction.airline);
+      console.log("Quantity:", selectedMyAuction.quantity);
+
+      const response = await axios.post(
+        `https://flightsbooking.me/admin/auction_proposal`,
+        {
+          userEmail: user.email,
+          auction_id: selectedAuction._id,
+          departure_airport: selectedMyAuction.departure_airport,
+          arrival_airport: selectedMyAuction.arrival_airport,
+          departure_time: selectedMyAuction.departure_time,
+          airline: selectedMyAuction.airline,
+          quantity: selectedMyAuction.quantity,
         },
-      });
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       console.log("Propuesta creada con éxito:", response.data);
+      setError(null);
     } catch (error) {
-      setError(error.message);
+      console.error("Error creating proposal:", error);
+      setError(error.response?.data?.error || error.message);
     }
   };
 
@@ -122,7 +134,7 @@ const AdminAuctions = () => {
           ))}
         </div>
       </div>
-      <Button onClick={() => createProposal()}> Crear Propuesta</Button>
+      <Button onClick={createProposal}>Crear Propuesta</Button>
     </div>
   );
 };
