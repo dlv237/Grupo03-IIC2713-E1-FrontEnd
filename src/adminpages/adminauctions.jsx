@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./adminauctions.css";
@@ -14,7 +15,7 @@ const AdminAuctions = () => {
     const fetchAdminAuction = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/admin/auction`,
+          `https://flightsbooking.me/admin/auction`,
           {
             headers: {
               "Content-Type": "application/json",
