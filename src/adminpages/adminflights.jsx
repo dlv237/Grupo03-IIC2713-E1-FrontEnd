@@ -9,7 +9,7 @@ const AdminFlights = () => {
 
   useEffect(() => {
     const fetchAdminFlights = async () => {
-      const url = `http://localhost:3000/seeflights`;
+      const url = `https://flightsbooking.me/seeflights`;
 
       try {
         const response = await fetch(url, {
@@ -40,7 +40,7 @@ const AdminFlights = () => {
   const handleAuctionFlight = async (auctionId) => {
     try {
       const response = await axios.post(
-        `http://localhost:3000/admin/auction`,
+        `https://flightsbooking.me/admin/auction`,
         {
           email: user.email,
           auction_id: auctionId,

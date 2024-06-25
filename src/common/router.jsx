@@ -32,10 +32,7 @@ const PageRoutes = () => {
         path="/flights"
         element={<ProtectedComponent component={Flights} />}
       />
-      <Route
-        path="/admin/flights"
-        element={<ProtectedComponent component={AdminFlights} />}
-      />
+      <Route path="/admin-flights" element={<AdminFlights />} />
       <Route
         path="/admin/auctions"
         element={<ProtectedComponent component={AdminAuctions} />}

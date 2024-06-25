@@ -14,7 +14,7 @@ const AdminAuctions = () => {
     const fetchAdminAuction = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/admin/auction`,
+          `https://flightsbooking.me/admin/auctions`,
           {
             headers: {
               "Content-Type": "application/json",
