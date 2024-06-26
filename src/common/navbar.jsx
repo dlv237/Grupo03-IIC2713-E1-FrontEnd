@@ -49,7 +49,7 @@ function Navbar() {
                 </li>
                 <li className="navbar-li">
                   <Link to="/admin-flights" className="navbar-a">
-                    Auctions
+                    Subastas
                   </Link>
                 </li>
                 <li className="navbar-li">

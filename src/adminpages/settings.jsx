@@ -47,11 +47,7 @@ function Settings() {
             max="1"
             step="0.01"
           />
-          <Button onClick={saveDiscount}>Guardar</Button>
-        </div>
-        <div className="settings-container-addadmin">
-          <h2 className="settings-category">Subastas</h2>
-          <Button>Revisar subastas</Button>
+          <button onClick={saveDiscount}>Guardar</button>
         </div>
       </div>
     </div>
