@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useNavigate } from "react-router-dom";
 import "./adminauctions.css";
 
 const AdminAuctions = () => {
@@ -10,6 +11,8 @@ const AdminAuctions = () => {
   const [selectedMyAuction, setSelectedMyAuction] = useState(null);
   const [error, setError] = useState(null);
   const { user } = useAuth0();
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const fetchAuctions = async () => {
@@ -38,7 +41,7 @@ const AdminAuctions = () => {
       }
     };
 
-    if (user) {
+    if (user.email == "admin@example.com") {
       fetchAuctions();
       fetchMyAuctions();
     }
@@ -70,6 +73,8 @@ const AdminAuctions = () => {
         }
       );
       console.log("Propuesta creada con éxito:", response.data);
+      const navigate = useNavigate("/admin/proposal");
+
       setError(null);
     } catch (error) {
       console.error("Error creating proposal:", error);

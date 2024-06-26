@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
-import Button from "../common/button.jsx";
+import { useNavigate } from "react-router-dom";
 import "./adminflights.css";
 
 const AdminFlights = () => {
   const [flights, setFlights] = useState([]);
   const [error, setError] = useState(null);
   const { user } = useAuth0();
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const fetchAdminFlights = async () => {
@@ -34,7 +36,7 @@ const AdminFlights = () => {
       }
     };
 
-    if (user) {
+    if (user.email == "admin@example.com") {
       fetchAdminFlights();
     }
   }, [user]);
@@ -55,6 +57,7 @@ const AdminFlights = () => {
       );
       console.log('Subasta publicada con éxito:', response.data);
     } catch (error) {
+      navigate('/admin/auctions');
       console.error('Error publicando la subasta:', error);
       setError(error.response?.data?.error || error.message);
     }
@@ -98,7 +101,7 @@ const AdminFlights = () => {
                 </p>
               </div>
               <div className="flight-button">
-                <Button onClick={() => handleAuctionFlight(flight.auction.auction_id)} simple>Publicar subasta</Button>
+                <button onClick={() => handleAuctionFlight(flight.auction.auction_id)} simple>Publicar subasta</button>
               </div>
             </div>
           </div>
