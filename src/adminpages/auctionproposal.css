@@ -1,0 +1,60 @@
+.auctions-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+}
+
+.auction-proposal-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: aliceblue;
+}
+
+.auction-item {
+    flex: 1;
+    border-right: 1px solid #ddd;
+    padding-right: 20px;
+    margin-right: 20px;
+    background-color: rgb(255, 255, 255);
+}
+
+.proposals-container {
+    flex: 2;
+    padding-left: 20px;
+}
+
+.auction-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.auction-text {
+    margin: 5px 0;
+}
+
+.proposals-container h3 {
+    margin-bottom: 10px;
+}
+
+.proposal-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 10px;
+}

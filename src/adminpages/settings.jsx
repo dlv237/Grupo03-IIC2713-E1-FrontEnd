@@ -2,9 +2,11 @@ import "./settings.css";
 import axios from "axios";
 import { useState } from "react";
 import Button from "../common/button.jsx";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Settings() {
   const [discount, setDiscount] = useState(0);
+  const { user } = useAuth0();
 
   const changeDiscount = (event) => {
     setDiscount(event.target.value);
@@ -22,6 +24,11 @@ function Settings() {
       console.error(error);
     }
   };
+
+  if (user.email == "admin@example.com") {
+    saveDiscount();
+  }
+  
 
   return (
     <div className="settings-page">
