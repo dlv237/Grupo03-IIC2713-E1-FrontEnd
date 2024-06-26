@@ -6,7 +6,7 @@ import { User } from "@auth0/auth0-react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 function Settings() {
-  const [discount, setDiscount] = useState(0);
+  const [discount, setDiscount] = useState(1);
   const { user } = useAuth0();
 
   const changeDiscount = (event) => {
@@ -19,8 +19,8 @@ function Settings() {
       await axios.post(
         "https://flightsbooking.me/changediscount",
         {
-          email: user.email,
           new_discount: discount,
+          email: user.email
         },
         {
           headers: {
