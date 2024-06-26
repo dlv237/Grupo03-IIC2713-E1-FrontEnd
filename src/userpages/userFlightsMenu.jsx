@@ -40,7 +40,7 @@ const UserFlightsMenu = () => {
     }
   }, [user]);
 
-  const handleAuctionFlight = async (auctionId, flightId) => {
+  const handleAuctionFlight = async (auctionId, flightId, price) => {
     const ticketsToBuy = tickets[auctionId];
     console.log('Comprando vuelo:', auctionId, flightId, user, ticketsToBuy);
     try {
@@ -48,6 +48,32 @@ const UserFlightsMenu = () => {
       const ipResponse = await axios.get(
         `https://ipinfo.io/json?token=9704d049333821`,
       );
+
+      const transaction_data = {
+        email: user.email,
+        flightId: flightId,
+        total_tickets_bought: ticketsToBuy,
+        ip_flight: ipResponse.data.ip,
+        price: price
+      };
+
+      console.log("Transaction data:", transaction_data);
+
+      const response_webpay = await axios.post(
+        "https://flightsbooking.me/user/transbankauction",
+        transaction_data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+
+      const webpay_url = response_webpay.data.url;
+      const token = response_webpay.data.token;
+
+      window.location.href = webpay_url + "?token_ws=" + token;
+
 
       const response = await axios.post(
         `https://flightsbooking.me/user/reserve`,
@@ -130,7 +156,7 @@ const UserFlightsMenu = () => {
                   />
                 </div>
                 <div className="flight-button">
-                  <button onClick={() => handleAuctionFlight(flight.auction.auction_id, flight._id)} simple>Comprar Vuelo</button>
+                  <button onClick={() => handleAuctionFlight(flight.auction.auction_id, flight._id, flight.price)} simple>Comprar Vuelo</button>
                 </div>
               </div>
             </div>
