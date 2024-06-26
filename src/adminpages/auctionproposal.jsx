@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useNavigate } from "react-router-dom";
+import "./auctionproposal.css";
 import Button from "../common/button.jsx";
 import "./auctionsWithProposals.css";
-import { useNavigate } from "react-router-dom";
 
 const AuctionsWithProposals = () => {
     const [data, setData] = useState([]);
@@ -82,28 +83,31 @@ const AuctionsWithProposals = () => {
     }
 
     return (
-        <div className="flights-container">
-            <div className="section-1">
-                <h1 className="auction-main-title">Propuestas de Subastas</h1>
-                {data.map((item, index) => (
-                    <div key={index} className="auction-card">
-                        <h2>Auction: {item.auction.auction_id}</h2>
-                        <p>Salida: {item.auction.departure_airport}</p>
-                        <p>Llegada: {item.auction.arrival_airport}</p>
-                        <p>Cantidad: {item.auction.quantity}</p>
-                        <h3>Propuestas:</h3>
-                        <ul className="proposals-list">
+        <div className="auctions-page">
+            {data.map((item, index) => (
+                <div key={index} className="auction-proposal-container">
+                    <div className="auction-item">
+                        <h2 className="auction-title">Auction: {item.auction.auction_id}</h2>
+                        <p className="auction-text">Salida: {item.auction.departure_airport}</p>
+                        <p className="auction-text">Llegada: {item.auction.arrival_airport}</p>
+                        <p className="auction-text">Cantidad: {item.auction.quantity}</p>
+                    </div>
+                    <div className="proposals-container">
+                        <h3>Proposals:</h3>
+                        <ul>
                             {item.proposals.map((proposal, proposalIndex) => (
                                 <li key={proposalIndex} className="proposal-item">
-                                    <p>Salida: {proposal.departure_airport}</p>
-                                    <p>Llegada: {proposal.arrival_airport}</p>
-                                    <p>Cantidad: {proposal.quantity}</p>
+                                    <p className="auction-text">Salida: {proposal.departure_airport}</p>
+                                    <p className="auction-text">Llegada: {proposal.arrival_airport}</p>
+                                    <p className="auction-text">Cantidad: {proposal.quantity}</p>
+                                    <button onClick={() => acceptProposal(proposal.proposal_id)}>Aceptar</button>
+                                    <button onClick={() => rejectProposal(proposal.proposal_id)}>Rechazar</button>
                                 </li>
                             ))}
                         </ul>
                     </div>
-                ))}
-            </div>
+                </div>
+            ))}
         </div>
     );
 };
