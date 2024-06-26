@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./adminauctions.css";
-import Button from "../common/button.jsx";
 
 const AdminAuctions = () => {
   const [auctions, setAuctions] = useState([]);
@@ -46,32 +45,23 @@ const AdminAuctions = () => {
   }, [user]);
 
   const createProposal = async () => {
-    console.log("Button clicked");
     if (!selectedAuction || !selectedMyAuction) {
       setError("Debe seleccionar una subasta de cada lista.");
       return;
     }
 
     try {
-      console.log("Attempting to create proposal with the following data:");
-      console.log("User Email:", user.email);
-      console.log("Auction ID:", selectedAuction._id);
-      console.log("Departure Airport:", selectedMyAuction.departure_airport);
-      console.log("Arrival Airport:", selectedMyAuction.arrival_airport);
-      console.log("Departure Time:", selectedMyAuction.departure_time);
-      console.log("Airline:", selectedMyAuction.airline);
-      console.log("Quantity:", selectedMyAuction.quantity);
-
       const response = await axios.post(
         `https://flightsbooking.me/admin/auction_proposal`,
         {
           userEmail: user.email,
-          auction_id: selectedAuction._id,
+          auction_id: selectedAuction.auction_id,
           departure_airport: selectedMyAuction.departure_airport,
           arrival_airport: selectedMyAuction.arrival_airport,
           departure_time: selectedMyAuction.departure_time,
           airline: selectedMyAuction.airline,
           quantity: selectedMyAuction.quantity,
+
         },
         {
           headers: {
@@ -134,7 +124,7 @@ const AdminAuctions = () => {
           ))}
         </div>
       </div>
-      <Button onClick={createProposal}>Crear Propuesta</Button>
+      <button onClick={createProposal}>Crear Propuesta</button>
     </div>
   );
 };
