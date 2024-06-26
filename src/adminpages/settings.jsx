@@ -2,6 +2,7 @@ import "./settings.css";
 import axios from "axios";
 import { useState } from "react";
 import Button from "../common/button.jsx";
+import { User } from "@auth0/auth0-react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 function Settings() {
@@ -13,12 +14,18 @@ function Settings() {
   };
 
   const saveDiscount = async () => {
+    console.log("Guardando descuento", discount, user.email)
     try {
       await axios.post(
-        "https://8ujhmk0td0.execute-api.us-east-2.amazonaws.com/Produccion2/changediscount",
+        "https://flightsbooking.me/changediscount",
         {
-          discount: discount,
-        }
+          new_discount: discount,
+          email: user.email
+        },
+        {  
+          headers: {
+          "Content-Type": "application/json",
+        },}
       );
     } catch (error) {
       console.error(error);
@@ -45,7 +52,7 @@ function Settings() {
             max="1"
             step="0.01"
           />
-          <Button onClick={saveDiscount}>Guardar</Button>
+          <button onClick={saveDiscount}>Guardar</button>
         </div> 
         <div className="settings-container-addadmin">
           <h2 className="settings-category">Subastas</h2>
