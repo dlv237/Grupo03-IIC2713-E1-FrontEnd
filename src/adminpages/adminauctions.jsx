@@ -58,7 +58,7 @@ const AdminAuctions = () => {
         `https://flightsbooking.me/admin/auction_proposal`,
         {
           userEmail: user.email,
-          auction_id: selectedAuction._id,
+          auction_id: selectedAuction.auction_id,
           departure_airport: selectedMyAuction.departure_airport,
           arrival_airport: selectedMyAuction.arrival_airport,
           departure_time: selectedMyAuction.departure_time,
