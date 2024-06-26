@@ -20,7 +20,7 @@ function Settings() {
         "https://flightsbooking.me/changediscount",
         {
           email: user.email,
-          discount: discount,
+          new_discount: discount,
         },
         {
           headers: {
