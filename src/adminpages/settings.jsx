@@ -2,7 +2,6 @@ import "./settings.css";
 import axios from "axios";
 import { useState } from "react";
 import Button from "../common/button.jsx";
-import { User } from "@auth0/auth0-react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 function Settings() {
@@ -14,7 +13,7 @@ function Settings() {
   };
 
   const saveDiscount = async () => {
-    console.log("Guardando descuento", discount, user.email)
+    console.log("Guardando descuento", discount, user.email);
     try {
       await axios.post(
         "https://flightsbooking.me/changediscount",
@@ -33,11 +32,6 @@ function Settings() {
     }
   };
 
-  if (user.email == "admin@example.com") {
-    saveDiscount();
-  }
-  
-
   return (
     <div className="settings-page">
       <div className="settings-container">
@@ -53,11 +47,11 @@ function Settings() {
             max="1"
             step="0.01"
           />
-          <button onClick={saveDiscount}>Guardar</button>
-        </div> 
+          <Button onClick={saveDiscount}>Guardar</Button>
+        </div>
         <div className="settings-container-addadmin">
           <h2 className="settings-category">Subastas</h2>
-            <Button>Revisar subastas</Button>
+          <Button>Revisar subastas</Button>
         </div>
       </div>
     </div>
