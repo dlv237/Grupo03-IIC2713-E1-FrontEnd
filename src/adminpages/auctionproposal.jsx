@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
-import Button from "../common/Button.jsx";
+import Button from "../common/button.jsx";
+import "./auctionsWithProposals.css";
 
 const AuctionsWithProposals = () => {
     const [data, setData] = useState([]);
@@ -39,25 +40,28 @@ const AuctionsWithProposals = () => {
     }
 
     return (
-        <div>
-            {data.map((item, index) => (
-                <div key={index} className="auction-container">
-                    <h2>Auction: {item.auction.auction_id}</h2>
-                    <p>Salida: {item.auction.departure_airport}</p>
-                    <p>Llegada: {item.auction.arrival_airport}</p>
-                    <p>Cantidad: {item.auction.quantity}</p>
-                    <h3>Proposals:</h3>
-                    <ul>
-                        {item.proposals.map((proposal, proposalIndex) => (
-                            <li key={proposalIndex}>
-                                <p>Salida: {proposal.departure_airport}</p>
-                                <p>Llegada: {proposal.arrival_airport}</p>
-                                <p>Cantidad: {proposal.quantity}</p>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            ))}
+        <div className="flights-container">
+            <div className="section-1">
+                <h1 className="auction-main-title">Propuestas de Subastas</h1>
+                {data.map((item, index) => (
+                    <div key={index} className="auction-card">
+                        <h2>Auction: {item.auction.auction_id}</h2>
+                        <p>Salida: {item.auction.departure_airport}</p>
+                        <p>Llegada: {item.auction.arrival_airport}</p>
+                        <p>Cantidad: {item.auction.quantity}</p>
+                        <h3>Propuestas:</h3>
+                        <ul className="proposals-list">
+                            {item.proposals.map((proposal, proposalIndex) => (
+                                <li key={proposalIndex} className="proposal-item">
+                                    <p>Salida: {proposal.departure_airport}</p>
+                                    <p>Llegada: {proposal.arrival_airport}</p>
+                                    <p>Cantidad: {proposal.quantity}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

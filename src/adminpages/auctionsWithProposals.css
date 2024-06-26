@@ -1,0 +1,60 @@
+.flights-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: transparent;
+}
+
+.section-1 {
+    width: 100%;
+    max-width: 800px;
+}
+
+.auction-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    transition: transform 0.3s, background-color 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 1);
+}
+
+.auction-card:hover {
+    transform: translateY(-5px);
+    background-color: #f0f0f0;
+}
+
+.auction-card h2 {
+    color: #000053;
+    font-size: 1.5em;
+    font-family: "League Spartan", sans-serif;
+}
+
+.auction-card p {
+    color: #000053;
+    font-size: 1em;
+    font-family: "League Spartan", sans-serif;
+}
+
+.auction-card h3 {
+    color: #000053;
+    font-size: 1.2em;
+    font-family: "League Spartan", sans-serif;
+    margin-top: 10px;
+}
+
+.proposals-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.proposal-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

@@ -55,13 +55,12 @@ const AdminAuctions = () => {
         `https://flightsbooking.me/admin/auction_proposal`,
         {
           userEmail: user.email,
-          auction_id: selectedAuction.auction_id,
+          auction_id: selectedAuction._id,
           departure_airport: selectedMyAuction.departure_airport,
           arrival_airport: selectedMyAuction.arrival_airport,
           departure_time: selectedMyAuction.departure_time,
           airline: selectedMyAuction.airline,
           quantity: selectedMyAuction.quantity,
-
         },
         {
           headers: {
@@ -80,9 +79,9 @@ const AdminAuctions = () => {
   return (
     <div className="auctions-page">
       <div className="auctions-container">
-        {error && <p>{error}</p>}
+        {error && <p className="error-message">{error}</p>}
         <div className="auctions-column">
-          <h2>Ofrecidos</h2>
+          <h2 className="column-title">Ofrecidos</h2>
           {auctions.map((auction) => (
             <div key={auction._id} className="auction-item">
               <input
@@ -91,19 +90,19 @@ const AdminAuctions = () => {
                 value={auction._id}
                 onChange={() => setSelectedAuction(auction)}
               />
-              <h2 className="auction-title">Auction ID: {auction._id}</h2>
-              <p className="auction-text">Departure Airport: {auction.departure_airport}</p>
-              <p className="auction-text">Arrival Airport: {auction.arrival_airport}</p>
-              <p className="auction-text">Departure Time: {auction.departure_time}</p>
-              <p className="auction-text">Airline: {auction.airline}</p>
-              <p className="auction-text">Quantity: {auction.quantity}</p>
-              <p className="auction-text">Group ID: {auction.group_id}</p>
-              <p className="auction-text">Type: {auction.type}</p>
+              <h3 className="auction-subtitle">Auction ID: {auction._id}</h3>
+              <p className="auction-text">Salida: {auction.departure_airport}</p>
+              <p className="auction-text">Llegada: {auction.arrival_airport}</p>
+              <p className="auction-text">Hora de salida: {auction.departure_time}</p>
+              <p className="auction-text">Aerolínea: {auction.airline}</p>
+              <p className="auction-text">Cantidad: {auction.quantity}</p>
+              <p className="auction-text">ID de grupo: {auction.group_id}</p>
+              <p className="auction-text">Tipo: {auction.type}</p>
             </div>
           ))}
         </div>
         <div className="auctions-column">
-          <h2>Mis Subastas</h2>
+          <h2 className="column-title">Mis Subastas</h2>
           {myAuctions.map((auction) => (
             <div key={auction._id} className="auction-item">
               <input
@@ -112,19 +111,19 @@ const AdminAuctions = () => {
                 value={auction._id}
                 onChange={() => setSelectedMyAuction(auction)}
               />
-              <h2 className="auction-title">Auction ID: {auction._id}</h2>
-              <p className="auction-text">Departure Airport: {auction.departure_airport}</p>
-              <p className="auction-text">Arrival Airport: {auction.arrival_airport}</p>
-              <p className="auction-text">Departure Time: {auction.departure_time}</p>
-              <p className="auction-text">Airline: {auction.airline}</p>
-              <p className="auction-text">Quantity: {auction.quantity}</p>
-              <p className="auction-text">Group ID: {auction.group_id}</p>
-              <p className="auction-text">Type: {auction.type}</p>
+              <h3 className="auction-subtitle">Auction ID: {auction._id}</h3>
+              <p className="auction-text">Salida: {auction.departure_airport}</p>
+              <p className="auction-text">Llegada: {auction.arrival_airport}</p>
+              <p className="auction-text">Hora de salida: {auction.departure_time}</p>
+              <p className="auction-text">Aerolínea: {auction.airline}</p>
+              <p className="auction-text">Cantidad: {auction.quantity}</p>
+              <p className="auction-text">ID de grupo: {auction.group_id}</p>
+              <p className="auction-text">Tipo: {auction.type}</p>
             </div>
           ))}
         </div>
       </div>
-      <button onClick={createProposal}>Crear Propuesta</button>
+      <button className="create-proposal-button" onClick={createProposal}>Crear Propuesta</button>
     </div>
   );
 };
