@@ -15,6 +15,7 @@ import Settings from "../adminpages/settings";
 import AdminFlights from "../adminpages/adminflights";
 import AdminAuctions from "../adminpages/adminauctions";
 import AuctionsWithProposals from "../adminpages/auctionproposal";
+import UserFlightsMenu from "../userpages/userFlightsMenu";
 
 
 const ProtectedComponent = ({ component: Component }) => {
@@ -67,6 +68,7 @@ const PageRoutes = () => {
         element={<ProtectedComponent component={Email} />}
       />
       <Route path="/settings" element={<Settings />} />
+      <Route path="/user-flights" element={<UserFlightsMenu />} />
     </Routes>
   );
 };
