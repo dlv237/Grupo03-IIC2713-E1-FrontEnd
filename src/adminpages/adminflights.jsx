@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
+import Button from "../common/button.jsx";
+import "./adminflights.css";
 
 const AdminFlights = () => {
   const [flights, setFlights] = useState([]);
@@ -59,46 +61,48 @@ const AdminFlights = () => {
   };
 
   return (
-    <div className="flight-container">
-      <div className="flight-card">
-        <div className="section-1">
-          <h1>Estos son los vuelos para el admin!</h1>
-          {error && (
-            <div className="error-message">
-              <p>Error: {error}</p>
+    <div className="flights-container">
+      <div className="section-1">
+        <h1 className="auction-main-title">Estos son los vuelos para el admin!</h1>
+        {error && (
+          <div className="error-message">
+            <p>Error: {error}</p>
+          </div>
+        )}
+        {flights.map((flight, index) => (
+          <div key={index} className="flight-card">
+            <div className="flight-info-group">
+              <div className="flight-info-vertical">
+                <h2 className="auction-subtitle">
+                  {flight.flights[0].departure_airport.name} ➔ {flight.flights[0].arrival_airport.name}
+                </h2>
+                <p className="auction-text">
+                  <strong>Hora de salida:</strong>{" "}
+                  {new Date(flight.flights[0].departure_airport.time).toLocaleTimeString("es-ES")}
+                </p>
+                <p className="auction-text">
+                  <strong>Hora de llegada:</strong>{" "}
+                  {new Date(flight.flights[0].arrival_airport.time).toLocaleTimeString("es-ES")}
+                </p>
+                <p className="auction-text">
+                  <strong>Precio:</strong>{" "}
+                  {flight.price.toLocaleString("es-CL", {
+                    style: "currency",
+                    currency: "CLP",
+                  })}{" "}
+                  CLP
+                </p>
+                <p className="auction-text">
+                  <strong>Asientos disponibles:</strong>{" "}
+                  {flight.seats_available}
+                </p>
+              </div>
+              <div className="flight-button">
+                <Button onClick={() => handleAuctionFlight(flight.auction.auction_id)} simple>Publicar subasta</Button>
+              </div>
             </div>
-          )}
-          {flights.map((flight, index) => (
-            <div key={index} className="flight-info">
-              <h2>
-                {flight.flights[0].departure_airport.name} ➔ {flight.flights[0].arrival_airport.name}
-              </h2>
-              <p>
-                <strong>Hora de salida:</strong>{" "}
-                {new Date(flight.flights[0].departure_airport.time).toLocaleTimeString("es-ES")}
-              </p>
-              <p>
-                <strong>Hora de llegada:</strong>{" "}
-                {new Date(flight.flights[0].arrival_airport.time).toLocaleTimeString("es-ES")}
-              </p>
-              <p>
-                <strong>Precio:</strong>
-                {flight.price.toLocaleString("es-CL", {
-                  style: "currency",
-                  currency: "CLP",
-                }) }
-                CLP
-              </p>
-              <p>
-                <strong>Asientos disponibles:</strong>{" "}
-                {flight.seats_available}
-              </p>
-              <button onClick={() => handleAuctionFlight(flight.auction.auction_id)}>
-                Publicar Subasta
-              </button>
-            </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </div>
   );
