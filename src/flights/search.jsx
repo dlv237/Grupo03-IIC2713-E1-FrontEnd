@@ -66,7 +66,7 @@ const Search = () => {
           <Link to={`/flights?${params.toString()}`}>
             <Button simple>Buscar vuelos</Button>
           </Link>
-          <Link to={`/flights?${params.toString()}`}>
+          <Link to={`/user-flights`}>
             <Button simple>Reservar vuelos</Button>
           </Link>
         </div>

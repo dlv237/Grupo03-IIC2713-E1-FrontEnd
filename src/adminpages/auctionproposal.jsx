@@ -3,6 +3,8 @@ import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 import "./auctionproposal.css";
+import Button from "../common/button.jsx";
+import "./auctionsWithProposals.css";
 
 const AuctionsWithProposals = () => {
     const [data, setData] = useState([]);
