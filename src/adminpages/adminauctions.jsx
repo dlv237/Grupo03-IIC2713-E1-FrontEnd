@@ -12,6 +12,7 @@ const AdminAuctions = () => {
   const [error, setError] = useState(null);
   const { user } = useAuth0();
   const navigate = useNavigate();
+  const [socket, setSocket] = useState(null);
 
 
   useEffect(() => {
@@ -44,6 +45,13 @@ const AdminAuctions = () => {
     if (user.email == "admin@example.com") {
       fetchAuctions();
       fetchMyAuctions();
+      connectWebSocket();
+    }
+
+    return () => {
+      if (socket) {
+        socket.close();
+      }
     }
   }, [user]);
 
@@ -81,10 +89,47 @@ const AdminAuctions = () => {
     }
   };
 
+  const connectWebSocket = () => {
+    const ws = new WebSocket('wss://flightsbooking.me/ws'); // Ajustar
+  
+    ws.onopen = () => {
+      console.log('WebSocket connected');
+      setSocket(ws);
+    };
+  
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      console.log('Received WebSocket message:', data);
+      // manejo de las auctions que vengan
+      updateAuctions(data);
+    };
+  
+    ws.onerror = (error) => {
+      console.error('WebSocket error:', error);
+    };
+  
+    ws.onclose = () => {
+      console.log('WebSocket disconnected');
+      setSocket(null);
+    };
+  };
+
+  const updateAuctions = (data) => {  // hacer mas funciones como esta?
+    if (data.type === 'offer') {
+      setAuctions(prevAuctions => {
+        const updatedAuctions = prevAuctions.map(auction => 
+          auction._id === data.auction_id ? { ...auction, ...data } : auction
+        );
+        return updatedAuctions;
+      });
+    }
+  };
+
   return (
     <div className="auctions-page">
       <div className="auctions-container">
         {error && <p className="error-message">{error}</p>}
+        {/* <div className="ws-status">WebSocket Status: {wsStatus}</div> */}
         <div className="auctions-column">
           <h2 className="column-title">Ofrecidos</h2>
           {auctions.map((auction) => (
