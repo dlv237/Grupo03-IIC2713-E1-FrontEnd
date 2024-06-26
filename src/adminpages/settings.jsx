@@ -19,13 +19,14 @@ function Settings() {
       await axios.post(
         "https://flightsbooking.me/changediscount",
         {
-          new_discount: discount,
-          email: user.email
+          email: user.email,
+          discount: discount,
         },
-        {  
+        {
           headers: {
-          "Content-Type": "application/json",
-        },}
+            "Content-Type": "application/json",
+          }
+        }
       );
     } catch (error) {
       console.error(error);
